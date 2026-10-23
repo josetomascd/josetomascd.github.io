@@ -28,7 +28,8 @@ html[lang="en"] [data-l="es"], html[lang="es"] [data-l="en"]{display:none !impor
 /* nav */
 .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08)}
 .nav-in{max-width:1024px;margin:0 auto;padding:0 22px;height:48px;display:flex;align-items:center;gap:28px;font-size:13px}
-.brand{font-weight:600;color:var(--ink);font-size:15px;margin-right:auto}
+.brand{display:inline-block;font-weight:600;color:var(--ink);font-size:15px;margin-right:auto;transform-origin:left center;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.brand:hover{transform:scale(1.14);font-weight:700;text-decoration:none;background:linear-gradient(90deg,#0066cc,#7b3fe4 55%,#d12f6a);-webkit-background-clip:text;background-clip:text;color:transparent}}
 .nav a.item{color:var(--ink);opacity:.8}
 .nav a.item{display:inline-block;transition:transform .2s cubic-bezier(.2,.7,.2,1),opacity .2s ease}
 .nav a.item span{display:inline-flex;flex-direction:column;align-items:center}
@@ -53,6 +54,9 @@ h3{letter-spacing:-.012em;line-height:1.15}
 h2{font-size:clamp(40px,6vw,56px);text-align:center}
 .lede{font-size:clamp(19px,2.4vw,24px);color:var(--mute);text-align:center;max-width:680px;margin:16px auto 0;line-height:1.35}
 .more{font-size:17px}
+.lede.nw,.lede.two{max-width:none}
+.lede.two .ln{display:block}
+@media (min-width:760px){.lede.nw,.lede.two .ln{white-space:nowrap}}
 
 /* hero */
 .hero{padding:90px 0 0;text-align:center;overflow:hidden}
@@ -207,9 +211,10 @@ h2{font-size:clamp(40px,6vw,56px);text-align:center}
 /* family */
 .famrow{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:64px}
 .famtext{font-size:clamp(19px,2.2vw,23px);line-height:1.45;letter-spacing:-.012em}
+.famnote{margin-top:28px;color:var(--mute);font-size:clamp(17px,1.9vw,20px);line-height:1.5;letter-spacing:-.008em}
 .famphoto{aspect-ratio:4/5;border-radius:28px;overflow:hidden;background:var(--tile);box-shadow:0 0 0 1px rgba(0,0,0,.04)}
 .famphoto img{width:100%;height:100%;object-fit:cover}
-@media (max-width:760px){.famrow{grid-template-columns:1fr;gap:32px}.famphoto{order:-1;max-width:420px;width:100%;margin:0 auto}.famtext{text-align:center}}
+@media (max-width:760px){.famrow{grid-template-columns:1fr;gap:32px}.famphoto{order:-1;max-width:420px;width:100%;margin:0 auto}.famtext,.famnote{text-align:center}}
 
 /* contact */
 .contact{text-align:center;background:var(--tile)}
@@ -298,7 +303,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <section id="work">
   <div class="wrap">
     <h2><span data-l="en">Work</span><span data-l="es">Experiencia</span></h2>
-    <p class="lede"><span data-l="en">A career built on understanding real human needs.</span><span data-l="es">Una carrera construida entendiendo necesidades reales de las personas.</span></p>
+    <p class="lede nw"><span data-l="en">A career built on understanding real human needs.</span><span data-l="es">Una carrera construida entendiendo necesidades reales de las personas.</span></p>
 
     <div class="jobs">
       <article class="job">
@@ -364,7 +369,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <section class="projects" id="projects">
   <div class="wrap">
     <h2><span data-l="en">Projects</span><span data-l="es">Proyectos</span></h2>
-    <p class="lede"><span data-l="en">Products I've built, grown or redefined — in companies, startups and university.</span><span data-l="es">Productos que he creado, hecho crecer o redefinido, en empresas, startups y la universidad.</span></p>
+    <p class="lede two"><span data-l="en"><span class="ln">Products I've built, grown or redefined,</span><span class="ln">in companies, startups and university.</span></span><span data-l="es"><span class="ln">Productos que he creado, hecho crecer o redefinido,</span><span class="ln">en empresas, startups y la universidad.</span></span></p>
 
     <div class="grid">
       <article class="card wide">
@@ -539,6 +544,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <div class="famcol">
     <p class="famtext" data-l="en">My mom has been my guiding light, teaching me the values I live by. My little brother, the purest soul I know, teaches me more than I could ever teach him. And my aunt, my grandma and my grandpa have been there for me through thick and thin. Everything I do carries a little of each of them.</p>
     <p class="famtext" data-l="es">Mi mamá ha sido mi guía y me enseñó los valores con los que vivo. Mi hermano pequeño, el alma más pura que conozco, me enseña más de lo que yo podría enseñarle a él. Y mi tía, mi abuela y mi abuelo han estado a mi lado en las buenas y en las malas. Todo lo que hago lleva un poco de cada uno de ellos.</p>
+    <p class="famnote" data-l="en">To each of you, if you ever come across this message, please know that I hold you close to my heart and love you dearly.</p>
+    <p class="famnote" data-l="es">A cada uno de ustedes, si algún día llegan a leer este mensaje: sepan que los llevo muy cerca del corazón y que los quiero con todo mi ser.</p>
     </div>
     <!-- FOTO: sube una foto familiar al repositorio como "familia.jpg" y se mostrará aquí -->
     <figure class="famphoto"><img src="familia.jpg" alt="" onerror="this.remove()"></figure>
