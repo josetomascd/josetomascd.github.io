@@ -157,7 +157,6 @@ h2{font-size:clamp(40px,6vw,56px);text-align:center}
 .card p{color:#d2d2d7}
 .card .stat{font-size:clamp(44px,6vw,64px);font-weight:700;letter-spacing:-.03em;margin-top:24px;background:linear-gradient(90deg,#2997ff,#a77bff);-webkit-background-clip:text;background-clip:text;color:transparent}
 .card .stat-l{color:var(--dark-mute);font-size:15px}
-.card details{margin-top:18px}
 .card summary{cursor:pointer;color:var(--dark-link);list-style:none}
 .card summary::-webkit-details-marker{display:none}
 .card details p{margin-top:12px}
@@ -250,6 +249,51 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 }
 @keyframes rise{to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.lang button,.four>div,.nav a.item,.tbtn,.ed,.contact .mail,.logo,.cname,.ed .emore{transition:none}.four>div:hover,.nav a.item:hover,.ed:hover,.contact .mail:hover,.lang button:hover{transform:none}.sheet[open],.sheet.closing{animation-name:fadeIn}.sheet.closing{animation-name:fadeOut}.btn:active{transform:none}}
+
+/* project cards: read more, chips, more projects, sheet */
+.card .links{align-items:center}
+.pmore{font:inherit;font-size:14px;cursor:pointer;background:transparent;color:var(--dark-ink);border:1px solid rgba(255,255,255,.55);border-radius:980px;padding:6px 16px;transition:background-color .2s ease,color .2s ease,transform .25s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.pmore:hover{background:#fff;color:#000;transform:scale(1.06)}}
+.pmore:active{transform:scale(.96)}
+.pextra{overflow:hidden;transition:height .7s cubic-bezier(.2,.7,.2,1)}
+.pextra>.grid{margin-top:20px}
+.pextra .card{opacity:0;transform:translateY(28px);transition:opacity .5s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.pextra.show .card{opacity:1;transform:none}
+.pextra.show .card:nth-child(2){transition-delay:.08s}.pextra.show .card:nth-child(3){transition-delay:.16s}.pextra.show .card:nth-child(4){transition-delay:.24s}.pextra.show .card:nth-child(5){transition-delay:.32s}
+@media (hover:hover){.pextra.show .card:hover{transform:scale(1.025);transition-delay:0s}}
+.morewrap{text-align:center;margin-top:48px}
+.morebtn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:clamp(19px,2vw,21px);font-weight:500;color:var(--dark-ink);background:none;border:0;padding:10px 18px;cursor:pointer;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s ease;-webkit-tap-highlight-color:transparent}
+.morebtn .chev{width:18px;height:18px;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.morebtn .lt{display:none}
+.morebtn[aria-expanded="true"] .mt{display:none}.morebtn[aria-expanded="true"] .lt{display:inline}
+.morebtn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+@media (hover:hover){.morebtn:hover{transform:scale(1.12);color:#fff}}
+.morebtn:active{transform:scale(.96)}
+.psheet{background:#1c1c1e;color:var(--dark-ink);width:min(760px,calc(100% - 32px))}
+.psheet .x{background:rgba(255,255,255,.1);color:#d2d2d7}
+.psheet .x:hover{background:rgba(255,255,255,.18);color:#fff}
+.psheet .yr{color:var(--dark-mute)}
+.psheet .ptag{display:inline-block;font-size:13px;color:var(--dark-mute);border:1px solid #3a3a3c;border-radius:980px;padding:3px 10px;margin-top:6px}
+.psheet h3{margin:6px 0 2px}
+.psheet .sbody{margin-top:8px}
+.psheet h4{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#a1a1a6;margin:30px 0 10px}
+.psheet .sbody p{margin-top:0;color:#e8e8ed;line-height:1.6}
+.psheet .sbody p+p{margin-top:12px}
+.psheet ul,.psheet ol{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.psheet ul li{position:relative;padding-left:20px;color:#e8e8ed;line-height:1.55}
+.psheet ul li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:50%;background:linear-gradient(90deg,#2997ff,#a77bff)}
+.psheet b{color:#fff;font-weight:600}
+.psteps{counter-reset:st}
+.psteps li{counter-increment:st;position:relative;padding:14px 16px 14px 56px;background:#2c2c2e;border-radius:16px;color:#e8e8ed;line-height:1.5}
+.psteps li::before{content:counter(st);position:absolute;left:16px;top:13px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff;background:linear-gradient(135deg,#2997ff,#a77bff)}
+.pfacts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
+.pfacts div{background:#2c2c2e;border-radius:16px;padding:16px}
+.pfacts b{display:block;font-size:clamp(22px,3vw,28px);font-weight:700;letter-spacing:-.02em;background:linear-gradient(90deg,#2997ff,#a77bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pfacts span{display:block;font-size:13px;color:var(--dark-mute);margin-top:2px;line-height:1.35}
+.psheet .plinks{display:flex;gap:20px;flex-wrap:wrap;margin-top:30px;padding-top:20px;border-top:1px solid #3a3a3c}
+.psheet .plinks a{color:var(--dark-link)}
+@media (max-width:600px){.pfacts{grid-template-columns:repeat(2,1fr)}}
+@media (prefers-reduced-motion:reduce){.pextra,.pextra .card,.morebtn,.morebtn .chev,.pmore{transition:none}.pextra .card{transform:none}}
 </style>
 </head>
 <body>
@@ -385,37 +429,79 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
     <div class="grid">
       <article class="card wide">
+        <span class="yr">Izo · 2026</span>
+        <h3>Mercamadrid</h3>
+        <span class="tag">Horizon Europe · MobilitiesForEU</span>
+        <p data-l="en">The customer's voice behind Spain's first autonomous, on-demand bus. On-site CX research at dawn, with focus groups and surveys of the workers and visitors of Europe's largest fresh-food market.</p>
+        <p data-l="es">La voz del usuario detrás del primer autobús autónomo y a demanda de España. Investigación CX en terreno, de madrugada, con focus groups y encuestas a trabajadores y visitantes del mayor mercado de alimentos frescos de Europa.</p>
+        <div class="stat"><span data-l="en">#1 in Spain</span><span data-l="es">#1 en España</span></div><div class="stat-l"><span data-l="en">first autonomous, on-demand bus in the country</span><span data-l="es">primer autobús autónomo y a demanda del país</span></div>
+        <div class="links"><button type="button" class="pmore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button><a href="https://www.mercamadrid.es" target="_blank" rel="noopener">mercamadrid.es ›</a></div>
+        <template><div data-l="en"><div class="pfacts"><div><b>194 ha</b><span>site area</span></div><div><b>20,000</b><span>people a day</span></div><div><b>15,000</b><span>vehicles a day</span></div><div><b>SAE 4+</b><span>autonomy level</span></div><div><b>30+</b><span>seats</span></div><div><b>100%</b><span>electric</span></div></div><h4>Context</h4><p>Mercamadrid is Spain's largest fresh-food distribution hub: over 800 companies, products from 50+ countries and activity day and night. It is Europe's largest perishable-food market and the world's second for fish, after Tokyo's Toyosu.</p><p>Madrid chose it as the urban lab of MobilitiesForEU, a Horizon Europe project testing autonomous, electric and connected mobility in seven European cities.</p><h4>The milestone</h4><p>Since 1 July 2026, Spain's first autonomous, electric, on-demand bus has been carrying passengers inside the site. It is operated by Alsa with Madrid City Council (Digital Office) and Mercamadrid: free, 30+ seats, SAE 4+ autonomy, a regular early-morning service and on-demand rides booked through the Alsa Mobilities app.</p><h4>Why it is unique</h4><ol class="psteps"><li><b>Bigger capacity</b>: 30+ seats, compared with the small shuttles deployed so far.</li><li><b>A demanding environment</b>: one of Spain's busiest hubs, with complex traffic and 9,000 workers, 15,000 vehicles and 20,000 people every day.</li><li><b>On-demand transport</b>: a feature never before deployed in any self-driving passenger service.</li></ol><h4>How it works</h4><ul><li><b>4:30 – 9:00 am</b>: regular service, roughly every 15 minutes.</li><li><b>9:00 – 10:30 am</b>: on demand, booked in the Alsa Mobilities app.</li><li>The app pools every request, calculates the optimal route and sends it to the bus, which drives it autonomously.</li><li>A circular route linking the commercial area, the fish and meat markets and the car park, free for workers and visitors.</li></ul><h4>Technology on board</h4><ul><li>100% electric, charged on site.</li><li>10 perimeter cameras, 6 3D LiDAR sensors and ultrasound all around.</li><li>High-precision GNSS with dual antenna, INS with GPS and RTK, and 5G connectivity.</li><li>It avoids obstacles such as double-parked vehicles on its own and runs in any weather without changing route.</li></ul><h4>The bigger picture</h4><p>Madrid aims to be carbon-neutral by 2030 under the EU Climate City Contract and its Madrid 360 mobility plan. MobilitiesForEU runs seven urban labs: Dresden, Gdansk, Ioannina, Sarajevo, Trenčín, Espoo and Madrid, which aims to become a model for European cities on the road to 2050.</p><h4>My role</h4><p>I was part of the Izo team bringing the customer-experience lens to the project, alongside the consultancy Alomón (transport engineering). Our job: understand each group of users so the service is designed around their real needs.</p><h4>How we did it</h4><ul><li>Fieldwork on site between 3:00 and 6:00 am, when the market is at its busiest.</li><li>On-the-ground observation of the daily routine of workers, hauliers and visitors.</li><li>Quantitative research with surveys, and qualitative research with interviews and focus groups.</li><li>Translating each group's needs, habits and expectations into recommendations for the service design.</li></ul><h4>Impact</h4><p>An internationally pioneering project: the first on-demand, self-driving bus operating permanently in a real environment open to the public. The CX study is ongoing and supports the next steps: remote operation from the city and, later, full Level 5 autonomy.</p></div><div data-l="es"><div class="pfacts"><div><b>194 ha</b><span>de superficie</span></div><div><b>20.000</b><span>personas al día</span></div><div><b>15.000</b><span>vehículos al día</span></div><div><b>SAE 4+</b><span>nivel de autonomía</span></div><div><b>+30</b><span>plazas</span></div><div><b>100%</b><span>eléctrico</span></div></div><h4>Contexto</h4><p>Mercamadrid es la mayor plataforma de distribución de alimentos frescos de España: más de 800 empresas, producto de más de 50 países y actividad día y noche. Es el mayor mercado europeo de alimentación perecedera y el segundo del mundo en pescado, tras Toyosu (Tokio).</p><p>Madrid lo eligió como laboratorio urbano de MobilitiesForEU, un proyecto de Horizon Europe que prueba movilidad autónoma, eléctrica y conectada en siete ciudades europeas.</p><h4>El hito</h4><p>Desde el 1 de julio de 2026 circula con viajeros dentro del recinto el primer autobús autónomo, eléctrico y a demanda de España. Lo opera Alsa junto al Ayuntamiento de Madrid (Oficina Digital) y Mercamadrid: es gratuito, tiene más de 30 plazas, autonomía SAE 4+, servicio regular de madrugada y viajes a demanda que se reservan en la app Alsa Mobilities.</p><h4>Por qué es único</h4><ol class="psteps"><li><b>Mayor capacidad</b>: más de 30 plazas, frente a las lanzaderas de muy pocas plazas desplegadas hasta ahora.</li><li><b>Un entorno exigente</b>: uno de los mayores centros de actividad de España, con tráfico complejo y 9.000 trabajadores, 15.000 vehículos y 20.000 personas cada día.</li><li><b>Transporte a demanda</b>: una funcionalidad que nunca se había desplegado en un servicio de conducción autónoma de pasajeros.</li></ol><h4>Cómo funciona</h4><ul><li><b>04:30 – 09:00 h</b>: servicio regular, con frecuencia aproximada de 15 minutos.</li><li><b>09:00 – 10:30 h</b>: a demanda, con reserva en la app Alsa Mobilities.</li><li>La app reúne todas las peticiones, calcula la ruta óptima y la envía al autobús, que la recorre en modo autónomo.</li><li>Ruta circular entre la zona comercial, los mercados de pescados y carnes y el parking, gratuita para trabajadores y visitantes.</li></ul><h4>Tecnología a bordo</h4><ul><li>100% eléctrico, con recarga en el propio recinto.</li><li>10 cámaras perimetrales, 6 sensores LiDAR 3D y ultrasonidos en todo el perímetro.</li><li>GNSS de alta precisión con antena dual, INS con GPS y RTK, y conectividad 5G.</li><li>Esquiva obstáculos por sí solo, como vehículos en doble fila, y opera con cualquier clima sin cambiar la ruta.</li></ul><h4>El contexto mayor</h4><p>Madrid aspira a ser neutra en carbono en 2030, con el Climate City Contract de la UE y el plan de movilidad Madrid 360. MobilitiesForEU despliega siete laboratorios urbanos: Dresde, Gdansk, Ioannina, Sarajevo, Trencín, Espoo y Madrid, que aspira a ser el modelo de las ciudades europeas en el camino hacia 2050.</p><h4>Mi rol</h4><p>Formé parte del equipo de Izo que aporta la mirada de experiencia de cliente al proyecto, junto a la consultora Alomón (ingeniería de transporte). Nuestro trabajo: entender a cada colectivo de usuarios para que el servicio se diseñe desde sus necesidades reales.</p><h4>Cómo lo hicimos</h4><ul><li>Trabajo de campo en el recinto, entre las 3:00 y las 6:00 h, cuando ocurre la actividad.</li><li>Observación en terreno del día a día de trabajadores, transportistas y visitantes.</li><li>Investigación cuantitativa con encuestas, y cualitativa con entrevistas y focus groups.</li><li>Traducción de las necesidades, hábitos y expectativas de cada colectivo en recomendaciones para el diseño del servicio.</li></ul><h4>Impacto</h4><p>Un proyecto pionero a nivel internacional: el primer autobús a demanda con conducción autónoma que opera de forma permanente en un entorno real y abierto al público. El estudio de experiencia de cliente sigue en marcha y acompaña los próximos pasos: operación remota desde la ciudad y, más adelante, autonomía de nivel 5.</p></div></template>
+        </article>
+
+      <article class="card">
+        <span class="yr">Izo · 2026</span>
+        <h3>Ecoembes</h3>
+        <span class="tag"><span data-l="en">Presented to the Executive Committee</span><span data-l="es">Presentado al Comité de Dirección</span></span>
+        <p data-l="en">I was part of the team that diagnosed and redesigned Ecoembes' stakeholder experience: archetypes, customer journeys and a prioritised plan of initiatives to move from a transactional relationship to one centred on people.</p>
+        <p data-l="es">Formé parte del equipo que diagnosticó y rediseñó la experiencia de los stakeholders de Ecoembes: arquetipos, customer journeys y un plan de iniciativas priorizado para pasar de una relación transaccional a una centrada en las personas.</p>
+        <div class="stat">360°</div><div class="stat-l"><span data-l="en">view of the ecosystem: clients, local authorities, recyclers and suppliers</span><span data-l="es">visión del ecosistema: clientes, entidades locales, recicladores y proveedores</span></div>
+        <div class="links"><button type="button" class="pmore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button><a href="https://www.ecoembes.com" target="_blank" rel="noopener">ecoembes.com ›</a></div>
+        <template><div data-l="en"><h4>Context</h4><p>Ecoembes is the non-profit organisation that coordinates packaging recycling in Spain. It needed to deeply understand how its different audiences experience the relationship, in order to transform how it serves, interacts and engages with them.</p><h4>My role</h4><p>I was part of the Izo team that ran the project end to end, from the internal interviews to the final presentation to the Executive Committee.</p><h4>Four stakeholders</h4><ul><li><b>Clients</b></li><li><b>Local authorities</b></li><li><b>Recyclers</b></li><li><b>Suppliers</b></li></ul><h4>How we did it</h4><ol class="psteps"><li><b>Internal interviews</b> with key employees to align the business vision and detect cross-cutting challenges.</li><li><b>Customer-service monitoring</b>: auditing real interactions to capture the Voice of the Customer.</li><li><b>Qualitative research</b>: in-depth interviews with clients and external stakeholders.</li><li><b>Quantitative validation</b>: surveys to test hypotheses with statistical rigour.</li></ol><h4>Deliverables, for each stakeholder</h4><ul><li>Archetypes based on behaviour, needs and expectations.</li><li>Customer journey maps across every stage of contact.</li><li>Pain points and needs at each touchpoint.</li><li>A bank of initiatives prioritised with impact and feasibility matrices.</li><li>Executive summary and roadmap for the Executive Committee.</li></ul><h4>Impact</h4><p>A clear, data-driven model of its relationship with its whole ecosystem, which helped Ecoembes evolve from a transactional view to an agile, unified, stakeholder-centred relationship model, laying the groundwork for strategic decisions.</p></div><div data-l="es"><h4>Contexto</h4><p>Ecoembes es la organización sin ánimo de lucro que coordina el reciclaje de envases en España. Necesitaba entender a fondo cómo viven la relación sus distintos públicos para transformar su forma de atenderlos, interactuar y vincularse con ellos.</p><h4>Mi rol</h4><p>Formé parte del equipo de Izo que llevó el proyecto de principio a fin, desde las entrevistas internas hasta la presentación final al Comité de Dirección.</p><h4>Cuatro stakeholders</h4><ul><li><b>Clientes</b></li><li><b>Entidades locales</b></li><li><b>Recicladores</b></li><li><b>Proveedores</b></li></ul><h4>Cómo lo hicimos</h4><ol class="psteps"><li><b>Entrevistas internas</b> con empleados clave para alinear la visión del negocio y detectar retos transversales.</li><li><b>Monitorización de la atención al cliente</b>: auditoría de interacciones reales para capturar la voz del cliente.</li><li><b>Investigación cualitativa</b>: entrevistas en profundidad con clientes y actores externos.</li><li><b>Validación cuantitativa</b>: encuestas para contrastar hipótesis con rigor estadístico.</li></ol><h4>Entregables, para cada stakeholder</h4><ul><li>Arquetipos basados en comportamientos, necesidades y expectativas.</li><li>Customer journey maps de todas las etapas de contacto.</li><li>Puntos de dolor y necesidades en cada touchpoint.</li><li>Banco de iniciativas priorizado con matrices de impacto y viabilidad.</li><li>Resumen ejecutivo y hoja de ruta para el Comité de Dirección.</li></ul><h4>Impacto</h4><p>Un modelo claro y basado en datos sobre su relación con todo su ecosistema, que permitió a Ecoembes evolucionar de una visión transaccional a un modelo de relación ágil, unificado y centrado en el stakeholder, y sentó las bases de sus decisiones estratégicas.</p></div></template>
+        </article>
+
+      <article class="card">
+        <span class="yr">Izo · 2026</span>
+        <h3>Focus Group KIA</h3>
+        <span class="tag"><span data-l="en">Focus group · One-way mirror room</span><span data-l="es">Focus group · Sala Gesell</span></span>
+        <p data-l="en">I was part of the team that ran a focus group to validate a new KIA commercial strategy before its launch in Spain, and turned what we heard into an insights report with recommendations for senior management.</p>
+        <p data-l="es">Formé parte del equipo que realizó un focus group en sala Gesell para validar una nueva estrategia comercial de KIA antes de lanzarla en España, y que convirtió lo escuchado en un informe de insights y recomendaciones para la dirección.</p>
+        <div class="links"><button type="button" class="pmore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button><a href="https://www.kia.com/es/" target="_blank" rel="noopener">kia.com/es ›</a></div>
+        <template><div data-l="en"><h4>Context</h4><p>KIA Spain wanted to know how its audience would receive a new commercial strategy before rolling it out, to reduce the risk of the launch.</p><h4>My role</h4><p>I was part of the Izo team behind the session in Madrid and the strategic analysis that followed.</p><h4>Goals</h4><ul><li>Validate the audience's receptiveness, reactions and expectations.</li><li>Detect adoption barriers, pain points and unexpected perceptions.</li><li>Turn findings into actionable recommendations before the launch.</li></ul><h4>How we did it</h4><ul><li><b>Rigorous recruitment</b>: homogeneous profiles on key variables, with diverse perspectives to avoid bias.</li><li><b>Neutral moderation</b> with structured discussion guides that encourage spontaneous answers.</li><li><b>Real-time capture</b> of answers, body language and group dynamics from the observation room.</li></ul><h4>Deliverables</h4><ul><li>Qualitative discourse analysis: purchase drivers and barriers.</li><li>Diagnosis of the issues raised by participants.</li><li>A bank of strategic and tactical recommendations for the Spanish market.</li><li>Executive report with key takeaways and an implementation roadmap.</li></ul><h4>Impact</h4><p>KIA Spain could test its strategy against the real voice of the customer before launching it: lower risk, a sharper value proposition and solid evidence for management's commercial decisions.</p></div><div data-l="es"><h4>Contexto</h4><p>KIA España quería saber cómo recibiría su público una nueva estrategia comercial antes de desplegarla en el mercado, para reducir el riesgo del lanzamiento.</p><h4>Mi rol</h4><p>Formé parte del equipo de Izo a cargo de la sesión en Madrid y del análisis estratégico posterior.</p><h4>Objetivos</h4><ul><li>Validar la receptividad, reacciones y expectativas del público objetivo.</li><li>Detectar barreras de adopción, puntos de dolor y percepciones no anticipadas.</li><li>Convertir los hallazgos en recomendaciones accionables antes del lanzamiento.</li></ul><h4>Cómo lo hicimos</h4><ul><li><b>Reclutamiento riguroso</b>: perfiles homogéneos en las variables clave y diversidad de perspectivas para evitar sesgos.</li><li><b>Moderación neutra</b> con guiones estructurados que favorecen la respuesta espontánea.</li><li><b>Registro en tiempo real</b> de respuestas, lenguaje no verbal y dinámicas de grupo desde la sala de observación.</li></ul><h4>Entregables</h4><ul><li>Análisis cualitativo del discurso: motivadores y frenos de compra.</li><li>Diagnóstico de las problemáticas detectadas.</li><li>Banco de recomendaciones estratégicas y tácticas para el mercado español.</li><li>Informe ejecutivo con key takeaways y hoja de ruta de implementación.</li></ul><h4>Impacto</h4><p>KIA España pudo contrastar su estrategia con la voz real del cliente antes de lanzarla: menos riesgo, una propuesta de valor más afinada y evidencia sólida para las decisiones comerciales de la dirección.</p></div></template>
+        </article>
+
+      <article class="card wide">
         <span class="yr">BancoEstado · 2020 – 2024</span>
         <h3>MercadoAquí</h3>
         <span class="tag">Marketplace · Data · UX</span>
         <p data-l="en">I joined BancoEstado's marketplace as an intern before its public launch and helped grow it into a leading showcase for Chilean entrepreneurs. I redesigned the seller registration flow, improved the internal platform with external tech providers, and used AI and segmentation to boost sellers' visibility and sales.</p>
         <p data-l="es">Entré al marketplace de BancoEstado como practicante antes de su lanzamiento y ayudé a convertirlo en un escaparate de referencia para emprendedores chilenos. Rediseñé el registro de vendedores, mejoré la plataforma interna junto a proveedores tecnológicos y usé IA y segmentación para aumentar la visibilidad y las ventas.</p>
-        <div class="stat">5,000+</div>
-        <div class="stat-l"><span data-l="en">entrepreneurs supported · 55,000+ customers segmented</span><span data-l="es">emprendedores apoyados · más de 55.000 clientes analizados</span></div>
-        <div class="links"><a href="https://www.bancoestado.cl" target="_blank" rel="noopener">bancoestado.cl ›</a></div>
-      </article>
+        <div class="stat"><span data-l="en">5,000+</span><span data-l="es">+5.000</span></div><div class="stat-l"><span data-l="en">entrepreneurs supported · 55,000+ customers segmented</span><span data-l="es">emprendedores apoyados · más de 55.000 clientes analizados</span></div>
+        <div class="links"><button type="button" class="pmore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button><a href="https://www.bancoestado.cl" target="_blank" rel="noopener">bancoestado.cl ›</a></div>
+        <template><div data-l="en"><div class="pfacts"><div><b>5,000+</b><span>entrepreneurs supported</span></div><div><b>55,000+</b><span>customers segmented</span></div><div><b>4+ years</b><span>on the MercadoAquí team</span></div></div><h4>Context</h4><p>MercadoAquí is the marketplace of BancoEstado, Chile's public bank, created to give entrepreneurs across the country visibility and a digital sales channel.</p><h4>My role</h4><p>I joined as an intern before the public launch and grew into a central role as Data Analyst in the digital unit.</p><h4>What I did</h4><ul><li>Redesigned the entrepreneur registration form after analysing user errors and friction.</li><li>Advised on improving the internal platform used by bank staff, working with external tech providers.</li><li>Used AI and data to boost the visibility and sales of 5,000+ entrepreneurs.</li><li>Managed and segmented a base of 55,000+ active customers for campaigns and decisions.</li><li>Built weekly KPI reports for senior stakeholders.</li></ul><h4>Impact</h4><p>I helped turn MercadoAquí into a leading showcase for Chilean entrepreneurs, with decisions guided by data.</p></div><div data-l="es"><div class="pfacts"><div><b>+5.000</b><span>emprendedores apoyados</span></div><div><b>+55.000</b><span>clientes segmentados</span></div><div><b>+4 años</b><span>en el equipo de MercadoAquí</span></div></div><h4>Contexto</h4><p>MercadoAquí es el marketplace de BancoEstado, el banco público de Chile, creado para dar visibilidad y un canal de venta digital a emprendedores de todo el país.</p><h4>Mi rol</h4><p>Entré como practicante antes del lanzamiento público y crecí hasta un rol central como Data Analyst en el área digital.</p><h4>Lo que hice</h4><ul><li>Rediseñé el formulario de registro de emprendedores a partir del análisis de errores y fricciones de los usuarios.</li><li>Asesoré en la mejora de la plataforma interna que usa el personal del banco, junto a proveedores tecnológicos externos.</li><li>Usé IA y datos para potenciar la visibilidad y las ventas de más de 5.000 emprendedores.</li><li>Administré y segmenté una base de más de 55.000 clientes activos para campañas y decisiones.</li><li>Preparé reportes semanales de KPIs para la dirección.</li></ul><h4>Impacto</h4><p>Ayudé a convertir MercadoAquí en un escaparate de referencia para emprendedores chilenos, con decisiones guiadas por datos.</p></div></template>
+        </article>
 
       <article class="card">
+        <span class="yr">Izo · 2026</span>
+        <h3>E-Redes</h3>
+        <span class="tag"><span data-l="en">UX · EDP Group</span><span data-l="es">UX · Grupo EDP</span></span>
+        <p data-l="en">A UX redesign of the customer area of EDP Group's electricity distributor in Spain: clearer consumption charts, less cognitive load and more direct flows.</p>
+        <p data-l="es">Rediseño UX del área de clientes de la distribuidora eléctrica del Grupo EDP en España: gráficos de consumo más claros, menos carga cognitiva y flujos más directos.</p>
+        <div class="links"><button type="button" class="pmore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button></div>
+        <template><div data-l="en"><h4>Context</h4><p>E-Redes is EDP Group's electricity distributor in Spain. Its private customer area had friction that made it hard to understand consumption and complete tasks.</p><h4>My role</h4><p>I developed the redesign proposal independently, from analysing user insights to the final design recommendations document.</p><h4>UX proposal</h4><ul><li><b>Insights</b>: synthesising customer feedback to prioritise the most relevant friction.</li><li><b>Data visualisation</b>: clearer charts for consumption, readings and metrics.</li><li><b>Simplicity</b>: restructured content and hierarchy to reduce cognitive load.</li><li><b>Flows</b>: more direct navigation paths for the main customer tasks.</li></ul><h4>Deliverable</h4><p>A UX audit and proposal document for the design and development team, with concrete, visual guidelines for the evolution of the interface.</p><h4>Impact</h4><p>A design roadmap to raise digital satisfaction, reduce calls to assisted channels and modernise the customer-area experience.</p></div><div data-l="es"><h4>Contexto</h4><p>E-Redes es la distribuidora eléctrica del Grupo EDP en España. Su área privada de clientes tenía fricciones que dificultaban entender el consumo y hacer gestiones.</p><h4>Mi rol</h4><p>Desarrollé la propuesta de rediseño de forma autónoma, desde el análisis de insights de usuarios hasta el documento final de recomendaciones de diseño.</p><h4>Propuesta UX</h4><ul><li><b>Insights</b>: síntesis del feedback de clientes para priorizar las fricciones más relevantes.</li><li><b>Visualización de datos</b>: gráficos de consumo, lecturas y métricas más claros e intuitivos.</li><li><b>Claridad</b>: contenidos y jerarquía reestructurados para reducir la carga cognitiva.</li><li><b>Flujos</b>: itinerarios de navegación más directos para las gestiones principales.</li></ul><h4>Entregable</h4><p>Un documento de auditoría y propuesta UX para el equipo de diseño y desarrollo, con lineamientos concretos y visuales para la evolución de la interfaz.</p><h4>Impacto</h4><p>Una hoja de ruta de diseño para elevar la satisfacción digital, reducir consultas en canales asistidos y modernizar la experiencia del área de clientes.</p></div></template>
+        </article>
+
+      <article class="card">
+        <span class="yr"><span data-l="en">2024 – Present</span><span data-l="es">2024 – Actualidad</span></span>
+        <h3>DBT Santiago Digital</h3>
+        <span class="tag"><span data-l="en">Web · UX · Social</span><span data-l="es">Web · UX · Redes</span></span>
+        <p data-l="en">First as Project Manager, now as consultant: I manage the center's digital presence — website, user experience, social content and communication — so its therapy reaches the people who need it.</p>
+        <p data-l="es">Primero como Project Manager y hoy como consultor: gestiono la presencia digital del centro (web, experiencia de usuario, contenido en redes y comunicación) para que su terapia llegue a quien la necesita.</p>
+        <div class="links"><button type="button" class="pmore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button><a href="https://dbtsantiago.cl" target="_blank" rel="noopener">dbtsantiago.cl ›</a><a href="https://instagram.com/dbt_santiago" target="_blank" rel="noopener">@dbt_santiago ›</a></div>
+        <template><div data-l="en"><div class="pfacts"><div><b>+37%</b><span>customer satisfaction</span></div><div><b>−50%</b><span>response time</span></div><div><b>+350%</b><span>average post impressions</span></div></div><h4>Context</h4><p>DBT Santiago is a Chilean center for Dialectical Behavior Therapy. The challenge: make its therapy reach the people who need it, with a clear, warm and trustworthy digital presence.</p><h4>My role</h4><p>I joined as Project Manager in 2024 to lead the digital initiatives, and today I support the center as a consultant.</p><h4>What I did</h4><ul><li>Led the digital roadmap across 4 parallel workstreams (website, social media, UX/UI and new features) with Agile/Scrum.</li><li>Designed an automated Instagram assistant (Manychat), built into the customer journey, that halved response time for patients and families.</li><li>Ran data-driven campaigns and content that grew average post impressions by 350%.</li><li>Applied Design Thinking to audit the service and remove friction across digital touchpoints.</li></ul><h4>Impact</h4><p>+37% in customer satisfaction and a digital presence that now brings therapy closer to more people.</p></div><div data-l="es"><div class="pfacts"><div><b>+37%</b><span>satisfacción de clientes</span></div><div><b>−50%</b><span>tiempo de respuesta</span></div><div><b>+350%</b><span>impresiones medias por post</span></div></div><h4>Contexto</h4><p>DBT Santiago es un centro chileno de Terapia Dialéctico Conductual. El reto: que su terapia llegue a quien la necesita, con una presencia digital clara, cercana y confiable.</p><h4>Mi rol</h4><p>Entré como Project Manager en 2024 para liderar las iniciativas digitales y hoy acompaño al centro como consultor.</p><h4>Lo que hice</h4><ul><li>Lideré la hoja de ruta digital en 4 frentes en paralelo (web, redes, UX/UI y nuevas funcionalidades) con Agile/Scrum.</li><li>Diseñé un asistente virtual automatizado en Instagram (Manychat), integrado al customer journey, que redujo a la mitad el tiempo de respuesta a pacientes y familias.</li><li>Ejecuté campañas y contenido basados en datos que aumentaron un 350% las impresiones medias por publicación.</li><li>Apliqué Design Thinking para auditar el servicio y eliminar fricciones en los puntos de contacto digitales.</li></ul><h4>Impacto</h4><p>+37% de satisfacción de clientes y una presencia digital que hoy acerca la terapia a más personas.</p></div></template>
+        </article>
+    </div>
+    <div class="pextra" id="pextra" hidden>
+      <div class="grid">
+      <article class="card wide">
         <span class="yr">2023 – 2024</span>
         <h3><span data-l="en">CX at Madrid Amusement Park</span><span data-l="es">CX en el Parque de Atracciones de Madrid</span></h3>
         <span class="tag"><span data-l="en">Master's thesis · UCM</span><span data-l="es">TFM · UCM</span></span>
         <p data-l="en">Qualitative and quantitative research, Power BI analysis, customer journey and visitor archetypes. I led proposals to cut waiting times and upgrade the park's app with real-time waits, push alerts and loyalty.</p>
         <p data-l="es">Investigación cualitativa y cuantitativa, análisis en Power BI, customer journey y arquetipos de visitantes. Lideré propuestas para reducir esperas y mejorar la app del parque con tiempos en vivo, notificaciones y fidelización.</p>
-        <details><summary><span data-l="en">Read more</span><span data-l="es">Leer más</span></summary>
-          <p data-l="en">We presented our findings and concrete improvements to the park's Head of Customer &amp; Sales, turning research into practical changes for the visitor experience.</p>
-          <p data-l="es">Presentamos los hallazgos y mejoras concretas a la responsable de Customer &amp; Sales del parque, llevando la investigación a cambios prácticos en la experiencia del visitante.</p>
-        </details>
-        <div class="links"><a href="https://www.parquedeatracciones.es" target="_blank" rel="noopener">parquedeatracciones.es ›</a></div>
-      </article>
-
-      <article class="card">
-        <span class="yr"><span data-l="en">2024 – Present</span><span data-l="es">2024 – Actualidad</span></span>
-        <h3><span data-l="en">DBT Santiago digital</span><span data-l="es">DBT Santiago digital</span></h3>
-        <span class="tag"><span data-l="en">Web · UX · Social</span><span data-l="es">Web · UX · Redes</span></span>
-        <p data-l="en">First as Project Manager, now as consultant: I manage the center's digital presence — website, user experience, social content and communication — so its therapy reaches the people who need it.</p>
-        <p data-l="es">Primero como Project Manager y hoy como consultor: gestiono la presencia digital del centro (web, experiencia de usuario, contenido en redes y comunicación) para que su terapia llegue a quien la necesita.</p>
-        <div class="links"><a href="https://dbtsantiago.cl" target="_blank" rel="noopener">dbtsantiago.cl ›</a><a href="https://instagram.com/dbt_santiago" target="_blank" rel="noopener">@dbt_santiago ›</a></div>
-      </article>
+        <div class="links"><button type="button" class="pmore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button><a href="https://www.parquedeatracciones.es" target="_blank" rel="noopener">parquedeatracciones.es ›</a></div>
+        <template><div data-l="en"><h4>Context</h4><p>Final project of the Master in Customer Experience at Universidad Complutense de Madrid, applied to a real case: Madrid's Amusement Park.</p><h4>How we did it</h4><ul><li>Interviews, on-site observation and surveys analysed in Power BI.</li><li>The visitor's customer journey and archetypes.</li></ul><h4>Proposals</h4><ul><li>Reduce waiting times.</li><li>Upgrade the app with real-time waits, event notifications and a loyalty programme.</li><li>Communicate the fast-pass system better.</li></ul><h4>Impact</h4><p>We presented our findings and concrete improvements to the park's Head of Customer &amp; Sales, turning research into practical changes for the visitor experience.</p></div><div data-l="es"><h4>Contexto</h4><p>Trabajo final del Máster en Customer Experience de la Universidad Complutense de Madrid, aplicado a un caso real: el Parque de Atracciones de Madrid.</p><h4>Cómo lo hicimos</h4><ul><li>Entrevistas, observación en el parque y encuestas analizadas en Power BI.</li><li>Customer journey del visitante y arquetipos.</li></ul><h4>Propuestas</h4><ul><li>Reducir los tiempos de espera.</li><li>Mejorar la app con tiempos de espera en vivo, notificaciones de eventos y un programa de fidelización.</li><li>Comunicar mejor el sistema de fast pass.</li></ul><h4>Impacto</h4><p>Presentamos los hallazgos y mejoras concretas a la responsable de Customer &amp; Sales del parque, llevando la investigación a cambios prácticos en la experiencia del visitante.</p></div></template>
+        </article>
 
       <article class="card">
         <span class="yr">2021 – 2022</span>
@@ -423,10 +509,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
         <span class="tag">Startup · <span data-l="en">Co-founder</span><span data-l="es">Cofundador</span></span>
         <p data-l="en">A triple-impact startup that upcycled baby clothes into educational toys, with seven validated products for kindergartens, therapists and parents, made by elderly women from the community.</p>
         <p data-l="es">Startup de triple impacto que transformaba ropa de bebé en juguetes educativos, con siete productos validados para jardines infantiles, terapeutas y familias, fabricados por mujeres mayores de la comunidad.</p>
-        <div class="stat">+50%</div>
-        <div class="stat-l"><span data-l="en">sales growth</span><span data-l="es">de crecimiento en ventas</span></div>
-        <div class="links"><a href="https://www.instagram.com/akitakids" target="_blank" rel="noopener">@akitakids ›</a></div>
-      </article>
+        <div class="stat">+50%</div><div class="stat-l"><span data-l="en">sales growth</span><span data-l="es">de crecimiento en ventas</span></div>
+        <div class="links"><button type="button" class="pmore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button><a href="https://www.instagram.com/akitakids" target="_blank" rel="noopener">@akitakids ›</a></div>
+        <template><div data-l="en"><div class="pfacts"><div><b>+50%</b><span>sales growth</span></div><div><b>7</b><span>validated products</span></div><div><b>1 week</b><span>average sell-through per product</span></div></div><h4>Context</h4><p>A triple-impact startup (social, environmental and economic) that I co-founded with four classmates from the Master in Innovation &amp; Entrepreneurship. We turned unused baby clothes into educational toys, made by elderly women from the community.</p><h4>My role</h4><p>Co-founder, CMO and Product Manager.</p><h4>What I did</h4><ul><li>Designed and ran the omnichannel marketing plan (social ads, SEO/SEM and content) and the go-to-market strategy from scratch.</li><li>Owned product and experience on the Shopify store.</li></ul><h4>What we achieved as a team</h4><ul><li>We launched 7 products iteratively from user research, for kindergartens, occupational therapists and parents.</li><li>We turned a direct competitor into a retail partner, securing in-store placement.</li></ul><h4>Impact</h4><p>+50% in total sales and each product selling through in about a week. The venture is no longer operating, but it was my great school of entrepreneurship.</p></div><div data-l="es"><div class="pfacts"><div><b>+50%</b><span>de crecimiento en ventas</span></div><div><b>7</b><span>productos validados</span></div><div><b>1 semana</b><span>de venta media por producto</span></div></div><h4>Contexto</h4><p>Startup de triple impacto (social, ambiental y económico) que cofundé con cuatro compañeros del Máster en Innovación y Emprendimiento. Transformábamos ropa de bebé en desuso en juguetes educativos, fabricados por mujeres mayores de la comunidad.</p><h4>Mi rol</h4><p>Cofundador, CMO y Product Manager.</p><h4>Lo que hice</h4><ul><li>Diseñé y ejecuté el plan de marketing omnicanal (Social Ads, SEO/SEM y contenido) y la estrategia de salida al mercado desde cero.</li><li>Lideré el producto y la experiencia de la tienda en Shopify.</li></ul><h4>Logros del equipo</h4><ul><li>Lanzamos 7 productos de forma iterativa a partir de investigación con usuarios, para jardines infantiles, terapeutas ocupacionales y familias.</li><li>Convertimos a un competidor directo en socio comercial, logrando presencia en tienda física.</li></ul><h4>Impacto</h4><p>+50% en ventas totales y cada producto vendido en una semana de media. Hoy el proyecto ya no está operativo, pero fue mi gran escuela de emprendimiento.</p></div></template>
+        </article>
 
       <article class="card">
         <span class="yr">2020</span>
@@ -434,10 +520,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
         <span class="tag"><span data-l="en">Health-tech concept</span><span data-l="es">Concepto health-tech</span></span>
         <p data-l="en">An "Uber for physiotherapy" connecting patients with physiotherapists at home or online, born from interviews about the hassle of clinic visits.</p>
         <p data-l="es">Un "Uber de la kinesiología" que conectaba pacientes con fisioterapeutas a domicilio u online, nacido de entrevistas sobre lo incómodo de ir a la clínica.</p>
-        <div class="stat">10,000+</div>
-        <div class="stat-l"><span data-l="en">views on our launch reel in its first week</span><span data-l="es">visualizaciones del reel de lanzamiento en su primera semana</span></div>
-        <div class="links"><a href="https://www.instagram.com/easykine" target="_blank" rel="noopener">@easykine ›</a></div>
-      </article>
+        <div class="stat"><span data-l="en">10,000+</span><span data-l="es">+10.000</span></div><div class="stat-l"><span data-l="en">views on our launch reel in its first week</span><span data-l="es">visualizaciones del reel de lanzamiento en su primera semana</span></div>
+        <div class="links"><button type="button" class="pmore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button><a href="https://www.instagram.com/easykine" target="_blank" rel="noopener">@easykine ›</a></div>
+        <template><div data-l="en"><h4>Context</h4><p>A B2C platform concept connecting patients with physiotherapists for sessions at home or online. It was born from patient interviews about how inconvenient it is to travel to a clinic.</p><h4>What we did</h4><ul><li>User research to validate the problem.</li><li>Value proposition and business model design.</li><li>A promotional launch video on Instagram.</li></ul><h4>Impact</h4><p>10,000+ views of the video in its first week. It was a concept project and was not implemented.</p></div><div data-l="es"><h4>Contexto</h4><p>Concepto de plataforma B2C que conectaba pacientes con fisioterapeutas para sesiones a domicilio u online. Nació de entrevistas a pacientes sobre lo incómodo de desplazarse a la clínica.</p><h4>Lo que hicimos</h4><ul><li>Investigación con usuarios para validar el problema.</li><li>Diseño de la propuesta de valor y del modelo de negocio.</li><li>Un video promocional de lanzamiento en Instagram.</li></ul><h4>Impacto</h4><p>Más de 10.000 visualizaciones del video en su primera semana. Fue un proyecto conceptual y no llegó a implementarse.</p></div></template>
+        </article>
 
       <article class="card">
         <span class="yr">2022</span>
@@ -445,17 +531,23 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
         <span class="tag"><span data-l="en">Sustainability concept · PUC</span><span data-l="es">Concepto de sostenibilidad · PUC</span></span>
         <p data-l="en">QR-coded plush toys made from textile waste, linked to a platform teaching children about sustainability and biodiversity. Designed around a circular model with reverse logistics and eco-design, aiming to reuse 1,800 kg of clothing a year.</p>
         <p data-l="es">Peluches con código QR hechos de residuos textiles, conectados a una plataforma que enseña a los niños sobre sostenibilidad y biodiversidad. Diseñado con un modelo circular, logística inversa y ecodiseño, con el objetivo de reutilizar 1.800 kg de ropa al año.</p>
-      </article>
+        <div class="links"><button type="button" class="pmore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button></div>
+        <template><div data-l="en"><div class="pfacts"><div><b>1,800 kg</b><span>of clothing reused a year (goal)</span></div></div><h4>Context</h4><p>Concept thesis for the Diploma in Corporate Sustainability &amp; Innovation at Pontificia Universidad Católica de Chile.</p><h4>The idea</h4><p>Educational plush toys made from textile waste, each with a QR code linked to an online platform that teaches children about sustainability and biodiversity.</p><h4>Model and goals</h4><ul><li>Circular economy with reverse logistics and eco-design.</li><li>Reuse 1,800 kg of clothing a year.</li><li>Create jobs for women.</li></ul><h4>Status</h4><p>A concept project; it was not implemented.</p></div><div data-l="es"><div class="pfacts"><div><b>1.800 kg</b><span>de ropa reutilizada al año (objetivo)</span></div></div><h4>Contexto</h4><p>Tesis conceptual del Diplomado en Sostenibilidad Corporativa e Innovación de la Pontificia Universidad Católica de Chile.</p><h4>La idea</h4><p>Peluches educativos hechos con residuos textiles, cada uno con un código QR conectado a una plataforma online que enseña a los niños sobre sostenibilidad y biodiversidad.</p><h4>Modelo y objetivos</h4><ul><li>Economía circular con logística inversa y ecodiseño.</li><li>Reutilizar 1.800 kg de ropa al año.</li><li>Crear empleo para mujeres.</li></ul><h4>Estado</h4><p>Proyecto conceptual; no llegó a implementarse.</p></div></template>
+        </article>
 
       <article class="card">
         <span class="yr">2017 – 2018</span>
         <h3>ReCrea</h3>
         <span class="tag"><span data-l="en">Sustainable fashion</span><span data-l="es">Moda sostenible</span></span>
-        <p data-l="en">Fashion items made from recycled textiles in partnership with the COANIQUEM foundation. I managed social media, operations and the supply chain end to end, from materials to production and distribution.</p>
-        <p data-l="es">Productos de moda hechos con textiles reciclados en alianza con la fundación COANIQUEM. Gestioné las redes sociales, operaciones y la cadena de suministro de principio a fin, desde los materiales hasta la producción y distribución.</p>
-        <div class="links"><a href="https://www.instagram.com/recrea_cl" target="_blank" rel="noopener">@recrea_cl ›</a></div>
-      </article>
+        <p data-l="en">Fashion made from the donated clothes that COANIQUEM, a Chilean foundation for children with burns, could no longer use and had to throw away. We turned that waste into products, and donated 50% of our profits to the foundation.</p>
+        <p data-l="es">Moda hecha con la ropa donada que COANIQUEM, fundación chilena que ayuda a niños con quemaduras, ya no podía usar y debía botar. Convertimos ese residuo en productos y donamos el 50% de nuestras utilidades a la fundación.</p>
+        <div class="stat">50%</div><div class="stat-l"><span data-l="en">of our profits donated to COANIQUEM</span><span data-l="es">de nuestras utilidades donadas a COANIQUEM</span></div>
+        <div class="links"><button type="button" class="pmore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button><a href="https://www.instagram.com/recrea_cl" target="_blank" rel="noopener">@recrea_cl ›</a></div>
+        <template><div data-l="en"><h4>Who is COANIQUEM</h4><p>COANIQUEM (Corporación de Ayuda al Niño Quemado) is a Chilean non-profit devoted to the comprehensive rehabilitation of children who have suffered burns. Part of its funding comes from the clothes that people donate.</p><h4>The problem</h4><p>Many people see "donating" as a synonym for "throwing away". So COANIQUEM receives a lot of clothing that cannot be used: torn, heavily stained or in very poor condition. The foundation has to sort it all, pack the unusable items into bales and eventually throw them away. The result: more textile waste, and extra work for a team whose mission is to help children.</p><h4>Our solution</h4><p>That is where ReCrea came in. We took those discarded clothes and turned them into new fashion products, so COANIQUEM had less waste to manage and the textiles got a second life. And we closed the circle: <b>we donated 50% of our profits to COANIQUEM</b>.</p><h4>My role</h4><p>I managed social media, operations and the supply chain end to end, from materials to production and distribution.</p><h4>What I learned</h4><ul><li>Supply chain management.</li><li>Production logistics with remote seamstresses.</li><li>Team organisation.</li><li>Digital promotion.</li></ul></div><div data-l="es"><h4>Qué es COANIQUEM</h4><p>COANIQUEM (Corporación de Ayuda al Niño Quemado) es una institución chilena sin fines de lucro dedicada a la rehabilitación integral de niños y niñas que han sufrido quemaduras. Parte de su financiamiento viene de la ropa que las personas donan.</p><h4>El problema</h4><p>Muchas personas ven "donar" como sinónimo de "botar". Por eso COANIQUEM recibe mucha ropa que no se puede usar: rota, con grandes manchas o en pésimas condiciones. La fundación tiene que segmentarla, guardar la que no sirve en fardos y, al final, botarla. El resultado: más residuos textiles y trabajo extra para un equipo cuya misión es ayudar a los niños.</p><h4>Nuestra solución</h4><p>Ahí entramos nosotros. Tomamos esa ropa descartada y la transformamos en nuevos productos de moda, para que COANIQUEM tuviera menos residuos que gestionar y los textiles tuvieran una segunda vida. Y cerramos el círculo: <b>donamos el 50% de nuestras utilidades a COANIQUEM</b>.</p><h4>Mi rol</h4><p>Gestioné las redes sociales, las operaciones y la cadena de suministro de principio a fin, desde los materiales hasta la producción y la distribución.</p><h4>Lo que aprendí</h4><ul><li>Gestión de la cadena de suministro.</li><li>Logística de producción con costureras a distancia.</li><li>Organización del equipo.</li><li>Promoción digital.</li></ul></div></template>
+        </article>
+      </div>
     </div>
+    <div class="morewrap"><button type="button" class="morebtn" id="morebtn" aria-expanded="false" aria-controls="pextra"><span class="mt"><span data-l="en">More projects</span><span data-l="es">Más proyectos</span></span><span class="lt"><span data-l="en">Fewer projects</span><span data-l="es">Menos proyectos</span></span><svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 6l4.5 4.5L12.5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
   </div>
 </section>
 
@@ -523,6 +615,16 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   </div>
 </section>
 
+<dialog class="sheet psheet" id="psheet" aria-labelledby="psheet-title">
+  <button type="button" class="x" aria-label="Close">×</button>
+  <div class="sheet-in">
+    <span class="yr"></span>
+    <h3 id="psheet-title"></h3>
+    <span class="ptag"></span>
+    <div class="sbody"></div>
+    <div class="plinks"></div>
+  </div>
+</dialog>
 <dialog class="sheet" id="sheet" aria-labelledby="sheet-title">
   <button type="button" class="x" aria-label="Close">×</button>
   <div class="sheet-in">
@@ -646,6 +748,61 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   var desk=matchMedia('(hover:hover) and (pointer:fine) and (min-width:721px)').matches;
   var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(desk&&!calm){var s=document.createElement('script');s.src='efectos.js?v=12';s.async=true;document.body.appendChild(s);}
+})();
+</script>
+
+<script>
+(function(){
+  var ps=document.getElementById('psheet'), opener=null, reduce=matchMedia('(prefers-reduced-motion: reduce)');
+  function openP(card){
+    opener=card.querySelector('.pmore');
+    ps.querySelector('.yr').innerHTML=card.querySelector('.yr').innerHTML;
+    ps.querySelector('h3').innerHTML=card.querySelector('h3').innerHTML;
+    ps.querySelector('.ptag').innerHTML=card.querySelector('.tag').innerHTML;
+    var body=ps.querySelector('.sbody'); body.innerHTML='';
+    body.appendChild(card.querySelector('template').content.cloneNode(true));
+    var pl=ps.querySelector('.plinks'); pl.innerHTML='';
+    card.querySelectorAll('.links a').forEach(function(a){pl.appendChild(a.cloneNode(true))});
+    pl.hidden=!pl.children.length;
+    ps.querySelector('.sheet-in').scrollTop=0;
+    ps.classList.remove('closing'); ps.showModal(); document.body.style.overflow='hidden';
+  }
+  function closeP(){
+    if(!ps.open||ps.classList.contains('closing'))return;
+    ps.classList.add('closing');
+    setTimeout(function(){ps.classList.remove('closing');ps.close();},reduce.matches?120:220);
+  }
+  ps.addEventListener('close',function(){document.body.style.overflow='';if(opener)opener.focus()});
+  ps.addEventListener('cancel',function(e){e.preventDefault();closeP()});
+  ps.querySelector('.x').addEventListener('click',closeP);
+  ps.addEventListener('click',function(e){if(e.target===ps)closeP()});
+  document.querySelectorAll('.card .pmore').forEach(function(b){b.addEventListener('click',function(){openP(b.closest('.card'))})});
+
+  // más proyectos
+  var btn=document.getElementById('morebtn'), ex=document.getElementById('pextra'), busy=false;
+  btn.addEventListener('click',function(){
+    if(busy)return;
+    var open=btn.getAttribute('aria-expanded')==='true';
+    if(reduce.matches){ex.hidden=open;ex.classList.toggle('show',!open);btn.setAttribute('aria-expanded',String(!open));return;}
+    busy=true;
+    if(!open){
+      ex.hidden=false; ex.style.height='0px';
+      var h=ex.scrollHeight; ex.offsetHeight;
+      ex.style.height=h+'px';
+      requestAnimationFrame(function(){ex.classList.add('show')});
+      btn.setAttribute('aria-expanded','true');
+      setTimeout(function(){ex.style.height='';busy=false;},720);
+    }else{
+      ex.style.height=ex.scrollHeight+'px'; ex.offsetHeight;
+      ex.classList.remove('show');
+      ex.style.height='0px';
+      btn.setAttribute('aria-expanded','false');
+      var top=btn.getBoundingClientRect().top;
+      setTimeout(function(){ex.hidden=true;ex.style.height='';busy=false;},720);
+      if(top<0||top>innerHeight)btn.scrollIntoView({behavior:'smooth',block:'center'});
+      else{var g=document.querySelector('#projects .grid');var y=g.getBoundingClientRect().bottom+scrollY-innerHeight*.55;if(scrollY>y)window.scrollTo({top:y,behavior:'smooth'});}
+    }
+  });
 })();
 </script>
 </body>
