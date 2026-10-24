@@ -86,11 +86,11 @@
         '<path d="M310 52 C270 30 230 24 190 24 M310 178 C270 200 230 206 190 206" fill="none" stroke="#f4f2ec" stroke-width="12"/>' +
         '<path d="M120 115 H260" stroke="#f4f2ec" stroke-width="6" stroke-linecap="round"/>' +
         [140, 160, 180, 200, 220, 240].map(function (x) { return '<path d="M' + x + ' 103 V127" stroke="#f4f2ec" stroke-width="5" stroke-linecap="round"/>'; }).join('')) },
-    { r: 1, k: 1, svg: svg('0 0 200 200',
+    { r: 1, k: .8, mode: 'bounce', svg: svg('0 0 200 200',
         '<circle cx="100" cy="100" r="94" fill="#e8772e" stroke="#3a1d0e" stroke-width="4"/>' +
         '<g fill="none" stroke="#3a1d0e" stroke-width="4"><path d="M100 6 V194 M6 100 H194"/>' +
         '<path d="M34 30 C66 64 66 136 34 170"/><path d="M166 30 C134 64 134 136 166 170"/></g>') },
-    { r: 1, k: .86, svg: svg('0 0 200 200',
+    { r: 1, k: .86, mode: 'rain', svg: svg('0 0 200 200',
         '<circle cx="100" cy="100" r="94" fill="#d4e94a" stroke="#8aa021" stroke-width="3"/>' +
         '<g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"><path d="M28 40 C70 70 70 130 28 160"/><path d="M172 40 C130 70 130 130 172 160"/></g>') }
   ];
@@ -103,16 +103,24 @@
     if (rolling) return;
     rolling = true;
     var d = BALLS[bi]; bi = (bi + 1) % BALLS.length;
+    if (d.mode === 'rain') { tennisRain(d.svg); return; }
     var D = Math.max(460, Math.min(innerHeight * .8, 780));   // tamaño grande, según la pantalla
     d.h = D * d.k; d.w = d.h * d.r;
     var el = document.createElement('div');
     el.className = 'fx-ball'; el.style.width = d.w + 'px'; el.style.height = d.h + 'px'; el.innerHTML = d.svg;
     ballLayer.appendChild(el);
     var a = d.w / 2, b = d.h / 2, reff = (a + b) / 2;
-    var W = section.clientWidth, ground = section.clientHeight + 50, dist = W + d.w * 2, dur = 4200, t0 = null;
+    var W = section.clientWidth, ground = section.clientHeight + 50, dist = W + d.w * 2, dur = d.mode === 'bounce' ? 6000 : 4200, t0 = null;
     function frame(ts) {
       if (t0 === null) t0 = ts;
       var p = Math.min((ts - t0) / dur, 1), travelled = dist * p, x = -d.w + travelled, th = travelled / reff;
+      if (d.mode === 'bounce') {   // basket: bota despacio de izquierda a derecha
+        var nb = 3, f = (p * nb) % 1, H = Math.min(section.clientHeight * .45, 360), y = H * (1 - Math.pow(2 * f - 1, 2));
+        var sq = f < .06 || f > .94 ? .93 : 1;
+        el.style.transform = 'translate(' + (x - a) + 'px,' + (ground - 2 * b - y) + 'px) rotate(' + (th * .5) + 'rad) scale(' + (2 - sq) + ',' + sq + ')';
+        if (p < 1) requestAnimationFrame(frame); else { el.remove(); rolling = false; }
+        return;
+      }
       var h = Math.sqrt(a * a * Math.pow(Math.sin(th), 2) + b * b * Math.pow(Math.cos(th), 2)); // óvalo: el centro sube y baja al rodar
       el.style.transform = 'translate(' + (x - a) + 'px,' + (ground - h - b) + 'px) rotate(' + th + 'rad)';
       if (p < 1) requestAnimationFrame(frame); else { el.remove(); rolling = false; }
@@ -183,7 +191,7 @@
         eyes(134) + '<path d="M118 124 Q128 136 121 142 Q131 148 117 154" fill="none"/>' +
         '<path d="M196 258 L222 182" stroke="#8a8f98" stroke-width="7"/><path d="M222 182 L226 168" stroke="#5b5f66" stroke-width="5"/>' + hand(196, 256))),
       style: { right: '8vw', top: '0' }, origin: '50% 50%',
-      from: 'translateY(-125%) rotate(180deg)', to: 'translateY(-24%) rotate(176deg)', tag: { right: 'calc(8vw + clamp(300px,25vw,400px) + 10px)', top: '338px' } }
+      from: 'translateY(-125%) rotate(180deg)', to: 'translateY(-24%) rotate(176deg)', tag: { right: '24px', top: '338px' } }
   ];
   var pi = 0, curPeek = null;
   function hidePeek() {
@@ -209,6 +217,46 @@
       curPeek = { el: el, tag: tag, def: d };
     });
     card.art.addEventListener('mouseleave', hidePeek);
+  }
+
+  /* ---------- lluvia de pelotas de tenis (3D) ---------- */
+  function tennisRain(svgStr) {
+    var lay = document.createElement('div');
+    lay.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:62;overflow:hidden';
+    document.body.appendChild(lay);
+    var Wv = innerWidth, Hv = innerHeight, cx = Wv / 2, line = Hv * .8, N = Wv < 1100 ? 22 : 30, list = [];
+    for (var i = 0; i < N; i++) {
+      var size = 44 + Math.random() * 46, x = Wv * (.04 + .92 * (i + Math.random() * .8) / N);
+      var el = document.createElement('div');
+      el.style.cssText = 'position:absolute;left:0;top:0;width:' + size + 'px;height:' + size + 'px;will-change:transform';
+      el.innerHTML = svgStr; lay.appendChild(el);
+      var dx = (x - cx) / cx;                        // -1 izquierda … 1 derecha
+      list.push({ el: el, s: size, x: x, dx: dx, delay: Math.random() * 900, fall: 900 + Math.random() * 300,
+        vx: dx * (Wv * .55), grow: 1 + (1 - Math.abs(dx)) * 2.4, spin: (Math.random() - .5) * 14 });
+    }
+    var t0 = null, total = 3400;
+    function frame(ts) {
+      if (t0 === null) t0 = ts;
+      var t = ts - t0, alive = false;
+      list.forEach(function (b) {
+        var u = t - b.delay, x = b.x, y = -b.s * 2, sc = .55, rot = 0;
+        if (u > 0) {
+          if (u < b.fall) {                           // cae acelerando
+            var q = u / b.fall; y = -b.s * 2 + (line + b.s * 2) * q * q; sc = .55 + .45 * q; rot = b.spin * q;
+          } else {                                    // rebota: lados hacia fuera, centro hacia el espectador
+            var k = (u - b.fall) / 1000;
+            x = b.x + b.vx * k;
+            y = line - Hv * .55 * k + Hv * 1.6 * k * k;
+            sc = 1 + (b.grow - 1) * Math.min(k * 1.4, 1);
+            rot = b.spin * (1 + k * 2);
+          }
+        }
+        if (y < Hv + b.s * b.grow && x > -b.s * 4 && x < Wv + b.s * 4) alive = true;
+        b.el.style.transform = 'translate(' + (x - b.s / 2) + 'px,' + (y - b.s / 2) + 'px) scale(' + sc + ') rotate(' + rot + 'rad)';
+      });
+      if ((alive || t < 1200) && t < total + 2000) requestAnimationFrame(frame); else { lay.remove(); rolling = false; }
+    }
+    requestAnimationFrame(frame);
   }
 
   /* ---------- tecnología ---------- */

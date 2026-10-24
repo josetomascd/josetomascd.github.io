@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>José Castex</title>
-<meta name="description" content="José Castex – Business Developer in Customer Experience, innovation and digital growth. Portfolio of work, projects and education.">
-<meta property="og:title" content="José Castex – Business Developer">
+<meta name="description" content="José Castex – I turn ideas into impact. Business development, customer experience, innovation and digital growth. Portfolio of work, projects and education.">
+<meta property="og:title" content="José Castex – I turn ideas into impact">
 <meta property="og:description" content="Customer Experience, innovation and digital growth. Madrid.">
 <style>
 :root{
@@ -38,13 +38,15 @@ html[lang="en"] [data-l="es"], html[lang="es"] [data-l="en"]{display:none !impor
 .lang{display:flex;background:var(--tile);border-radius:980px;padding:2px}
 .lang button{border:0;background:none;font:inherit;font-size:12px;padding:3px 10px;border-radius:980px;color:var(--mute);cursor:pointer}
 .lang button{transition:background-color .2s ease,color .2s ease,box-shadow .2s ease}
+.lang button{display:inline-flex;align-items:center;gap:5px}
+.lang .flag{width:16px;height:11px;border-radius:2px;flex:none;box-shadow:0 0 0 .5px rgba(0,0,0,.15)}
 .lang button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
 .lang button{transition:background-color .2s ease,color .2s ease,box-shadow .2s ease,transform .25s cubic-bezier(.2,.7,.2,1)}
 @media (hover:hover){.lang button:hover{transform:scale(1.12);color:var(--ink)}}
 .lang button:active{transform:scale(.94)}
 @media (prefers-reduced-transparency:reduce){.nav{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}}
 @media (prefers-contrast:more){.nav{background:#fff;border-bottom-color:var(--ink)}.btn.ghost,.card .tag{border-color:currentColor}}
-@media (max-width:720px){.nav a.item{display:none}}
+@media (max-width:720px){.nav a.item{display:none}.brand,.brand:hover,.brand:active,.brand:focus{background:linear-gradient(90deg,#0066cc,#7b3fe4 55%,#d12f6a);-webkit-background-clip:text;background-clip:text;color:transparent;text-decoration:none;-webkit-tap-highlight-color:transparent}}
 
 /* layout */
 .wrap{max-width:980px;margin:0 auto;padding:0 22px}
@@ -55,7 +57,8 @@ h2{font-size:clamp(40px,6vw,56px);text-align:center}
 .lede{font-size:clamp(19px,2.4vw,24px);color:var(--mute);text-align:center;max-width:680px;margin:16px auto 0;line-height:1.35}
 .more{font-size:17px}
 .lede.nw,.lede.two{max-width:none}
-.lede.two .ln{display:block}
+@media (min-width:760px){.lede.fit{max-width:none}.lede.fit .ln{display:inline-block;white-space:nowrap}}
+@media (min-width:760px){.lede.two .ln{display:block}}
 @media (min-width:760px){.lede.nw,.lede.two .ln{white-space:nowrap}}
 
 /* hero */
@@ -66,6 +69,9 @@ h2{font-size:clamp(40px,6vw,56px);text-align:center}
 .ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
 .btn{display:inline-block;background:var(--link);color:#fff;border-radius:980px;padding:11px 22px;font-size:17px;transition:transform .1s ease-out,background-color .2s ease,color .2s ease;-webkit-tap-highlight-color:transparent}
 .btn:active{transform:scale(.97)}
+.hero .btn,.contact .cbox .btn{transition:transform .25s cubic-bezier(.2,.7,.2,1),background-color .2s ease,color .2s ease}
+@media (hover:hover){.hero .btn:hover,.contact .cbox .btn:hover{transform:scale(1.07);font-weight:700}}
+.hero .btn:active,.contact .cbox .btn:active{transform:scale(.97)}
 .card summary:active,.nav a:active{opacity:.6}
 .btn:hover{background:#0077ed;text-decoration:none}
 .btn.ghost{background:none;color:var(--link);border:1px solid var(--link)}
@@ -143,6 +149,8 @@ h2{font-size:clamp(40px,6vw,56px);text-align:center}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:64px}
 .card{background:var(--dark-tile);border-radius:28px;padding:40px;display:flex;flex-direction:column}
 .card.wide{grid-column:span 2}
+.card{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease}
+@media (hover:hover){.card:hover{transform:scale(1.025);box-shadow:0 18px 44px rgba(0,0,0,.45)}}
 .card .yr{color:var(--dark-mute);font-size:15px}
 .card h3{font-size:clamp(28px,3.4vw,40px);margin:8px 0 14px}
 .card .tag{display:inline-block;font-size:13px;color:var(--dark-mute);border:1px solid #333;border-radius:980px;padding:3px 10px;margin-bottom:16px;align-self:flex-start}
@@ -191,6 +199,10 @@ h2{font-size:clamp(40px,6vw,56px);text-align:center}
 .ed .yr{color:var(--mute);font-size:15px}
 .ed h3{font-size:26px;margin:8px 0 4px}
 .ed .sch{color:var(--mute);margin-bottom:14px}
+.uni{display:inline-block;color:inherit;transform-origin:left center;transition:transform .25s cubic-bezier(.2,.7,.2,1),color .2s ease}
+@media (hover:hover){.uni:hover{font-weight:700;color:var(--ink);text-decoration:none;transform:scale(1.04)}}
+.sheet a.slogo{transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease}
+@media (hover:hover){.sheet a.slogo:hover{transform:scale(1.1);box-shadow:0 0 0 1px rgba(0,0,0,.06),0 10px 24px rgba(0,0,0,.12)}}
 .ed>p:last-of-type{margin-bottom:22px}
 @media (max-width:720px){.edu{grid-template-columns:1fr}.ed{padding:30px}}
 
@@ -251,8 +263,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <a class="item" href="#education"><span data-l="en">Education</span><span data-l="es">Formación</span></a>
     <a class="item" href="#contact"><span data-l="en">Contact</span><span data-l="es">Contacto</span></a>
     <div class="lang" role="group" aria-label="Language">
-      <button type="button" data-set="en" aria-pressed="true">EN</button>
-      <button type="button" data-set="es" aria-pressed="false">ES</button>
+      <button type="button" data-set="en" aria-pressed="true"><svg class="flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><clipPath id="fkuk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><path d="M0,0v30h60v-30z" fill="#012169"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#fkuk)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg>EN</button>
+      <button type="button" data-set="es" aria-pressed="false"><svg class="flag" viewBox="0 0 3 2" preserveAspectRatio="none" aria-hidden="true"><rect width="3" height="2" fill="#AA151B"/><rect y=".5" width="3" height="1" fill="#F1BF00"/></svg>ES</button>
     </div>
   </div>
 </nav>
@@ -263,7 +275,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <header class="hero">
   <div class="wrap">
     <h1>José Castex</h1>
-    <p class="role"><span data-l="en">Business Developer in Customer Experience</span><span data-l="es">Business Developer en Experiencia de Cliente</span></p>
+    <p class="role"><span data-l="en">I turn ideas into impact.</span><span data-l="es">Convierto ideas en impacto.</span></p>
     <p class="sub"><span data-l="en">Commercial Engineer · Master in Innovation &amp; Entrepreneurship · Master in CX Management</span><span data-l="es">Ingeniero Comercial · Máster en Innovación y Emprendimiento · Máster en Customer Experience</span></p>
     <div class="ctas">
       <a class="btn" href="#projects"><span data-l="en">See my projects</span><span data-l="es">Ver mis proyectos</span></a>
@@ -369,7 +381,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <section class="projects" id="projects">
   <div class="wrap">
     <h2><span data-l="en">Projects</span><span data-l="es">Proyectos</span></h2>
-    <p class="lede two"><span data-l="en"><span class="ln">Products I've built, grown or redefined,</span><span class="ln">in companies, startups and university.</span></span><span data-l="es"><span class="ln">Productos que he creado, hecho crecer o redefinido,</span><span class="ln">en empresas, startups y la universidad.</span></span></p>
+    <p class="lede two"><span data-l="en"><span class="ln">Products I've built, grown or redefined,</span> <span class="ln">in companies, startups and university.</span></span><span data-l="es"><span class="ln">Productos que he creado, hecho crecer o redefinido,</span> <span class="ln">en empresas, startups y la universidad.</span></span></p>
 
     <div class="grid">
       <article class="card wide">
@@ -451,12 +463,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <section id="education">
   <div class="wrap">
     <h2><span data-l="en">Education</span><span data-l="es">Formación</span></h2>
-    <p class="lede"><span data-l="en">Business, innovation and customer experience, studied in Chile and Spain.</span><span data-l="es">Negocios, innovación y experiencia de cliente, estudiados en Chile y España.</span></p>
+    <p class="lede fit"><span data-l="en"><span class="ln">Business, innovation and customer experience,</span> <span class="ln">studied in Chile and Spain.</span></span><span data-l="es"><span class="ln">Negocios, innovación y experiencia de cliente,</span> <span class="ln">estudiados en Chile y España.</span></span></p>
     <div class="edu">
       <article class="ed" data-logo="ucm" data-ini="UCM">
         <span class="yr">Madrid, 2023 – 2024</span>
         <h3><span data-l="en">Master in Customer Experience Management</span><span data-l="es">Máster en Customer Experience Management</span></h3>
-        <p class="sch">Universidad Complutense de Madrid</p>
+        <p class="sch"><a class="uni" href="https://www.ucm.es/" target="_blank" rel="noopener">Universidad Complutense de Madrid</a></p>
         <p data-l="en">Design Thinking, Human &amp; Life Centered Design, Lean and Scrum, and UX. Real projects with Izo, BBVA, Telefónica and McDonald's. Endorsed by DEC.</p>
         <p data-l="es">Design Thinking, Human &amp; Life Centered Design, Lean, Scrum y UX. Proyectos reales con Izo, BBVA, Telefónica y McDonald's. Avalado por la asociación DEC.</p>
         <button type="button" class="tbtn emore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button>
@@ -469,7 +481,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <article class="ed" data-logo="uai" data-ini="UAI">
         <span class="yr">Santiago, 2021 – 2022</span>
         <h3><span data-l="en">Master in Innovation &amp; Entrepreneurship</span><span data-l="es">Máster en Innovación y Emprendimiento</span></h3>
-        <p class="sch">Universidad Adolfo Ibáñez</p>
+        <p class="sch"><a class="uni" href="https://www.uai.cl/postgrados/magisteres-de-continuidad/mag%C3%ADster-en-innovacion-y-emprendimiento" target="_blank" rel="noopener">Universidad Adolfo Ibáñez</a></p>
         <p data-l="en">Hands-on program to ideate, test and launch ventures with economic, social and environmental impact. Akitá was born here.</p>
         <p data-l="es">Programa práctico para idear, testear y lanzar proyectos con impacto económico, social y ambiental. Aquí nació Akitá.</p>
         <button type="button" class="tbtn emore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button>
@@ -482,7 +494,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <article class="ed" data-logo="puc" data-ini="UC">
         <span class="yr">Santiago, 2022</span>
         <h3><span data-l="en">Diploma in Corporate Sustainability &amp; Innovation</span><span data-l="es">Diplomado en Sostenibilidad Corporativa e Innovación</span></h3>
-        <p class="sch">Pontificia Universidad Católica de Chile</p>
+        <p class="sch"><a class="uni" href="https://www.uc.cl/" target="_blank" rel="noopener">Pontificia Universidad Católica de Chile</a></p>
         <p data-l="en">Strategies to integrate sustainability into business models, strategy and culture. Ndémiko was my final project.</p>
         <p data-l="es">Estrategias para integrar la sostenibilidad en modelos de negocio, estrategia y cultura. Ndémiko fue mi proyecto final.</p>
         <button type="button" class="tbtn emore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button>
@@ -495,7 +507,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <article class="ed" data-logo="uai" data-ini="UAI">
         <span class="yr">Santiago, 2017 – 2021</span>
         <h3><span data-l="en">Commercial Engineering</span><span data-l="es">Ingeniería Comercial</span></h3>
-        <p class="sch">Universidad Adolfo Ibáñez</p>
+        <p class="sch"><a class="uni" href="https://www.uai.cl/" target="_blank" rel="noopener">Universidad Adolfo Ibáñez</a></p>
         <p data-l="en">Finance, marketing and strategy, with a Core Curriculum developed with Columbia University. Teaching Assistant in Business Design &amp; Evaluation.</p>
         <p data-l="es">Finanzas, marketing y estrategia, con un Core Curriculum desarrollado junto a Columbia University. Ayudante de la asignatura Diseño y Evaluación de Negocios.</p>
         <button type="button" class="tbtn emore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button>
@@ -514,10 +526,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <dialog class="sheet" id="sheet" aria-labelledby="sheet-title">
   <button type="button" class="x" aria-label="Close">×</button>
   <div class="sheet-in">
-    <div class="slogo"><img alt=""><i></i></div>
+    <a class="slogo" target="_blank" rel="noopener" aria-label="Website"><img alt=""><i></i></a>
     <span class="yr"></span>
     <h3 id="sheet-title"></h3>
-    <p class="sch"></p>
+    <p class="sch"><a class="uni" target="_blank" rel="noopener"></a></p>
     <div class="sbody"></div>
   </div>
 </dialog>
@@ -609,7 +621,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     sh.querySelector('.slogo i').textContent=card.dataset.ini;
     sh.querySelector('.yr').textContent=card.querySelector('.yr').textContent;
     sh.querySelector('h3').innerHTML=card.querySelector('h3').innerHTML;
-    sh.querySelector('.sch').textContent=card.querySelector('.sch').textContent;
+    var cu=card.querySelector('.sch a'), su=sh.querySelector('.sch a'); su.textContent=cu.textContent; su.href=cu.href; sh.querySelector('.slogo').href=cu.href;
     var body=sh.querySelector('.sbody'); body.innerHTML='';
     body.appendChild(card.querySelector('template').content.cloneNode(true));
     sh.querySelector('.sheet-in').scrollTop=0;
@@ -633,7 +645,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 (function(){
   var desk=matchMedia('(hover:hover) and (pointer:fine) and (min-width:721px)').matches;
   var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(desk&&!calm){var s=document.createElement('script');s.src='efectos.js?v=11';s.async=true;document.body.appendChild(s);}
+  if(desk&&!calm){var s=document.createElement('script');s.src='efectos.js?v=12';s.async=true;document.body.appendChild(s);}
 })();
 </script>
 </body>
