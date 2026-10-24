@@ -294,6 +294,18 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .psheet .plinks a{color:var(--dark-link)}
 @media (max-width:600px){.pfacts{grid-template-columns:repeat(2,1fr)}}
 @media (prefers-reduced-motion:reduce){.pextra,.pextra .card,.morebtn,.morebtn .chev,.pmore{transition:none}.pextra .card{transform:none}}
+.card .links a,.psheet .plinks a{display:inline-block;transform-origin:left center;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.card .links a:hover,.psheet .plinks a:hover{text-decoration:none;font-weight:700;transform:scale(1.08)}}
+.card .links a:active,.psheet .plinks a:active{transform:scale(.97)}
+/* luz de color que sigue al cursor sobre el nombre (solo ordenador) */
+@media (hover:hover) and (pointer:fine) and (min-width:721px) and (prefers-reduced-motion:no-preference){
+  .hero h1.spot{position:relative;cursor:default}
+  .hero h1.spot::after{content:attr(data-text);position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(90deg,#0066cc,#7b3fe4 55%,#d12f6a);-webkit-background-clip:text;background-clip:text;color:transparent;
+    -webkit-mask-image:radial-gradient(circle var(--r,190px) at var(--x,50%) var(--y,50%),#000 0%,rgba(0,0,0,.85) 40%,transparent 100%);
+    mask-image:radial-gradient(circle var(--r,190px) at var(--x,50%) var(--y,50%),#000 0%,rgba(0,0,0,.85) 40%,transparent 100%);
+    opacity:var(--o,0);transition:opacity .2s linear}
+}
 </style>
 </head>
 <body>
@@ -318,7 +330,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <!-- HERO -->
 <header class="hero">
   <div class="wrap">
-    <h1>José Castex</h1>
+    <h1 class="spot" data-text="José Castex">José Castex</h1>
     <p class="role"><span data-l="en">I turn ideas into impact.</span><span data-l="es">Convierto ideas en impacto.</span></p>
     <p class="sub"><span data-l="en">Commercial Engineer · Master in Innovation &amp; Entrepreneurship · Master in CX Management</span><span data-l="es">Ingeniero Comercial · Máster en Innovación y Emprendimiento · Máster en Customer Experience</span></p>
     <div class="ctas">
@@ -475,9 +487,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
         <span class="yr">Izo · 2026</span>
         <h3>E-Redes</h3>
         <span class="tag"><span data-l="en">UX · EDP Group</span><span data-l="es">UX · Grupo EDP</span></span>
-        <p data-l="en">A UX redesign of the customer area of EDP Group's electricity distributor in Spain: clearer consumption charts, less cognitive load and more direct flows.</p>
-        <p data-l="es">Rediseño UX del área de clientes de la distribuidora eléctrica del Grupo EDP en España: gráficos de consumo más claros, menos carga cognitiva y flujos más directos.</p>
-        <div class="links"><button type="button" class="pmore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button></div>
+        <p data-l="en">A UX redesign of the private customer area of EDP Group's electricity distributor in Spain: clearer consumption charts, less cognitive load and more direct flows.</p>
+        <p data-l="es">Rediseño UX del área privada de clientes de la distribuidora eléctrica del Grupo EDP en España: gráficos de consumo más claros, menos carga cognitiva y flujos más directos.</p>
+        <div class="links"><button type="button" class="pmore"><span data-l="en">Read more</span><span data-l="es">Leer más</span></button><a href="https://www.eredesdistribucion.es/" target="_blank" rel="noopener">eredesdistribucion.es ›</a></div>
         <template><div data-l="en"><h4>Context</h4><p>E-Redes is EDP Group's electricity distributor in Spain. Its private customer area had friction that made it hard to understand consumption and complete tasks.</p><h4>My role</h4><p>I developed the redesign proposal independently, from analysing user insights to the final design recommendations document.</p><h4>UX proposal</h4><ul><li><b>Insights</b>: synthesising customer feedback to prioritise the most relevant friction.</li><li><b>Data visualisation</b>: clearer charts for consumption, readings and metrics.</li><li><b>Simplicity</b>: restructured content and hierarchy to reduce cognitive load.</li><li><b>Flows</b>: more direct navigation paths for the main customer tasks.</li></ul><h4>Deliverable</h4><p>A UX audit and proposal document for the design and development team, with concrete, visual guidelines for the evolution of the interface.</p><h4>Impact</h4><p>A design roadmap to raise digital satisfaction, reduce calls to assisted channels and modernise the customer-area experience.</p></div><div data-l="es"><h4>Contexto</h4><p>E-Redes es la distribuidora eléctrica del Grupo EDP en España. Su área privada de clientes tenía fricciones que dificultaban entender el consumo y hacer gestiones.</p><h4>Mi rol</h4><p>Desarrollé la propuesta de rediseño de forma autónoma, desde el análisis de insights de usuarios hasta el documento final de recomendaciones de diseño.</p><h4>Propuesta UX</h4><ul><li><b>Insights</b>: síntesis del feedback de clientes para priorizar las fricciones más relevantes.</li><li><b>Visualización de datos</b>: gráficos de consumo, lecturas y métricas más claros e intuitivos.</li><li><b>Claridad</b>: contenidos y jerarquía reestructurados para reducir la carga cognitiva.</li><li><b>Flujos</b>: itinerarios de navegación más directos para las gestiones principales.</li></ul><h4>Entregable</h4><p>Un documento de auditoría y propuesta UX para el equipo de diseño y desarrollo, con lineamientos concretos y visuales para la evolución de la interfaz.</p><h4>Impacto</h4><p>Una hoja de ruta de diseño para elevar la satisfacción digital, reducir consultas en canales asistidos y modernizar la experiencia del área de clientes.</p></div></template>
         </article>
 
@@ -803,6 +815,29 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       else{var g=document.querySelector('#projects .grid');var y=g.getBoundingClientRect().bottom+scrollY-innerHeight*.55;if(scrollY>y)window.scrollTo({top:y,behavior:'smooth'});}
     }
   });
+})();
+</script>
+<script>
+(function(){
+  var h=document.querySelector('.hero h1.spot');
+  if(!h||!matchMedia('(hover:hover) and (pointer:fine) and (min-width:721px)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var raf=0,px=-1e4,py=-1e4,REACH=1700,rng=document.createRange(); rng.selectNodeContents(h);   // distancia (px) desde la que empieza a verse la luz
+  function paint(){
+    raf=0;
+    var r=h.getBoundingClientRect(), base=Math.max(150,r.height*1.6);
+    var x=px-r.left, y=py-r.top, t=rng.getBoundingClientRect();   // distancia al texto, no a la caja
+    var dx=Math.max(0,t.left-px,px-t.right), dy=Math.max(0,t.top-py,py-t.bottom), d=Math.hypot(dx,dy*.5);   // en vertical la distancia pesa la mitad: se nota igual de lejos arriba y abajo
+    var o=Math.max(0,1-d/REACH); o=Math.pow(o,1.3);   // más cerca, más luz; dentro del nombre, el máximo de ahora
+    h.style.setProperty('--x',x+'px');h.style.setProperty('--y',y+'px');
+    h.style.setProperty('--r',(base+d*1.5+dy)+'px');h.style.setProperty('--o',o.toFixed(3));
+  }
+  function req(){if(!raf)raf=requestAnimationFrame(paint)}
+  function move(e){px=e.clientX;py=e.clientY;req()}
+  addEventListener('mousemove',move,{passive:true,capture:true});
+  addEventListener('pointermove',move,{passive:true,capture:true});
+  addEventListener('scroll',req,{passive:true});
+  addEventListener('resize',req);
+  document.addEventListener('mouseout',function(e){if(!e.relatedTarget){px=-1e4;py=-1e4;req()}});
 })();
 </script>
 </body>
