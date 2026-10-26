@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>José Castex</title>
+<link rel="canonical" href="https://josetomascd.github.io/">
+<script>if(/\.html$/.test(location.pathname)&&history.replaceState){history.replaceState(null,'',location.pathname.replace(/index\.html$/,'').replace(/\.html$/,'')+location.search+location.hash)}</script>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>try{var _l=localStorage.getItem("lang")}catch(e){}document.documentElement.lang=_l||((navigator.language||"en").slice(0,2)==="es"?"es":"en")</script>
 <meta name="description" content="José Castex – I turn ideas into impact. Business development, customer experience, innovation and digital growth. Portfolio of work, projects and education.">
 <meta property="og:title" content="José Castex – I turn ideas into impact">
 <meta property="og:description" content="Customer Experience, innovation and digital growth. Madrid.">
@@ -132,6 +138,7 @@ h2{font-size:clamp(40px,6vw,56px);text-align:center}
 .job h3{font-size:28px}
 .job .co{font-size:19px;color:var(--mute);margin:4px 0 12px}
 .job p{max-width:640px}
+.job p b{font-weight:600;color:var(--ink)}
 @media (max-width:720px){.job{grid-template-columns:1fr;gap:6px}}
 .others{margin-top:88px;text-align:center}
 .others h3{font-size:21px;color:var(--mute);font-weight:600}
@@ -236,6 +243,10 @@ h2{font-size:clamp(40px,6vw,56px);text-align:center}
 .contact .mail:active{transform:scale(.98)}
 .copied{position:absolute;left:50%;top:100%;transform:translate(-50%,-4px);white-space:nowrap;font-size:13px;font-weight:500;letter-spacing:0;color:#fff;background:var(--ink);border-radius:980px;padding:5px 12px;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .3s cubic-bezier(.2,.7,.2,1)}
 .mail.done .copied{opacity:1;transform:translate(-50%,6px)}
+.ctip{position:fixed;left:0;top:0;z-index:200;white-space:nowrap;font-size:13px;font-weight:500;letter-spacing:0;color:#fff;background:rgba(29,29,31,.86);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-radius:980px;padding:6px 12px;pointer-events:none;opacity:0;transition:opacity .18s ease;will-change:transform}
+.ctip.on{opacity:1}
+@media (hover:hover) and (pointer:fine){.contact .mail{cursor:pointer}.contact .mail .copied{display:none}}
+@media (prefers-reduced-transparency:reduce){.ctip{background:#1d1d1f;backdrop-filter:none;-webkit-backdrop-filter:none}}
 .contact .cbox .ctas{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
 .contact .cbox .btn{text-align:center}
 .contact .ctas{margin-top:32px}
@@ -306,6 +317,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     mask-image:radial-gradient(circle var(--r,190px) at var(--x,50%) var(--y,50%),#000 0%,rgba(0,0,0,.85) 40%,transparent 100%);
     opacity:var(--o,0);transition:opacity .2s linear}
 }
+@media (pointer:coarse){.lang button,.cname{position:relative}.lang button::before,.cname::before{content:"";position:absolute;inset:-10px -3px}}
 </style>
 </head>
 <body>
@@ -337,7 +349,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <a class="btn" href="#projects"><span data-l="en">See my projects</span><span data-l="es">Ver mis proyectos</span></a>
     </div>
     <!-- FOTO: sube tu foto al repositorio como "foto.jpg" y se mostrará aquí -->
-    <div class="portrait"><img src="foto.jpg" alt="José Castex" onerror="this.remove()">JC</div>
+    <div class="portrait"><img src="foto.jpg" alt="José Castex" onerror="var u=this.src;if(u.slice(-4)==='.png'){this.src=u.slice(0,-4)+'.jpg'}else if(u.slice(-4)==='.jpg'){this.src=u.slice(0,-4)+'.jpeg'}else{this.remove()}">JC</div>
   </div>
 </header>
 
@@ -375,48 +387,48 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
     <div class="jobs">
       <article class="job">
-        <div class="when"><a class="logo" href="https://www.izo.es/" target="_blank" rel="noopener" aria-label="Izo"><img src="logos/izo.png" alt="" onerror="this.remove()"><i>Iz</i></a><a class="cname" href="https://www.izo.es/" target="_blank" rel="noopener">Izo</a>Madrid, 2025 – <span data-l="en">Present</span><span data-l="es">Actualidad</span></div>
+        <div class="when"><a class="logo" href="https://www.izo.es/" target="_blank" rel="noopener" aria-label="Izo"><img src="logos/izo.png" alt="" onerror="var u=this.src;if(u.slice(-4)==='.png'){this.src=u.slice(0,-4)+'.jpg'}else if(u.slice(-4)==='.jpg'){this.src=u.slice(0,-4)+'.jpeg'}else{this.remove()}"><i>Iz</i></a><a class="cname" href="https://www.izo.es/" target="_blank" rel="noopener">Izo</a>Madrid, 2025 – <span data-l="en">Present</span><span data-l="es">Actualidad</span></div>
         <div>
           <h3>Business Developer &amp; Senior Consultant</h3>
           <p class="co"><span data-l="en">Customer Experience consultancy</span><span data-l="es">Consultora de Customer Experience</span></p>
-          <p data-l="en">I turn customer insight into growth opportunities, connecting clients' commercial goals with CX solutions grounded in data, design and emotion. I identify opportunities, design pilots and scale solutions that improve customer journeys.</p>
-          <p data-l="es">Convierto insights de clientes en oportunidades de crecimiento, conectando los objetivos comerciales de los clientes con soluciones de CX basadas en datos, diseño y emoción. Detecto oportunidades, diseño pilotos y escalo soluciones que mejoran el customer journey.</p>
+          <p data-l="en"><b>CX projects for KIA, Ecoembes, Mercamadrid and E-Redes.</b> I turn customer insight into growth opportunities, connecting commercial goals with CX solutions grounded in data, design and emotion. I identify opportunities, design pilots and scale solutions that improve customer journeys.</p>
+          <p data-l="es"><b>Proyectos de CX para KIA, Ecoembes, Mercamadrid y E-Redes.</b> Convierto insights de clientes en oportunidades de crecimiento, conectando objetivos comerciales con soluciones de CX basadas en datos, diseño y emoción. Detecto oportunidades, diseño pilotos y escalo soluciones que mejoran el customer journey.</p>
         </div>
       </article>
       <article class="job">
-        <div class="when"><a class="logo" href="https://www.dbtsantiago.cl/" target="_blank" rel="noopener" aria-label="DBT Santiago"><img src="logos/dbt-santiago.png" alt="" onerror="this.remove()"><i>DBT</i></a><a class="cname" href="https://www.dbtsantiago.cl/" target="_blank" rel="noopener">DBT Santiago</a>Santiago, 2024 – 2025</div>
+        <div class="when"><a class="logo" href="https://www.dbtsantiago.cl/" target="_blank" rel="noopener" aria-label="DBT Santiago"><img src="logos/dbt-santiago.png" alt="" onerror="var u=this.src;if(u.slice(-4)==='.png'){this.src=u.slice(0,-4)+'.jpg'}else if(u.slice(-4)==='.jpg'){this.src=u.slice(0,-4)+'.jpeg'}else{this.remove()}"><i>DBT</i></a><a class="cname" href="https://www.dbtsantiago.cl/" target="_blank" rel="noopener">DBT Santiago</a>Santiago, 2024 – 2025</div>
         <div>
           <h3>Project Manager</h3>
           <p class="co"><span data-l="en">Mental health and therapy center</span><span data-l="es">Centro de salud mental y terapia</span></p>
-          <p data-l="en">Led digital transformation with Agile/Scrum: website upgrades, UX/UI improvements and new features. Designed CX strategies including an Instagram chatbot (Manychat), journey mapping and feedback loops, plus data-driven campaigns that grew engagement and leads.</p>
-          <p data-l="es">Lideré la transformación digital con Agile/Scrum: mejoras de la web, UX/UI y nuevas funcionalidades. Diseñé estrategias de CX como un chatbot de Instagram (Manychat), journey mapping y ciclos de feedback, además de campañas basadas en datos que aumentaron interacción y leads.</p>
+          <p data-l="en"><b>+37% patient satisfaction.</b> Led digital transformation with Agile/Scrum: website, UX/UI and new features. Designed CX strategies including an Instagram chatbot (Manychat), journey mapping, feedback loops and data-driven campaigns.</p>
+          <p data-l="es"><b>+37 % de satisfacción de pacientes.</b> Lideré la transformación digital con Agile/Scrum: web, UX/UI y nuevas funcionalidades. Diseñé estrategias de CX como un chatbot de Instagram (Manychat), journey mapping, ciclos de feedback y campañas basadas en datos.</p>
         </div>
       </article>
       <article class="job">
-        <div class="when"><a class="logo" href="https://www.bancoestado.cl/" target="_blank" rel="noopener" aria-label="BancoEstado"><img src="logos/bancoestado.png" alt="" onerror="this.remove()"><i>BE</i></a><a class="cname" href="https://www.bancoestado.cl/" target="_blank" rel="noopener">BancoEstado</a>Santiago, 2020 – 2024</div>
+        <div class="when"><a class="logo" href="https://www.bancoestado.cl/" target="_blank" rel="noopener" aria-label="BancoEstado"><img src="logos/bancoestado.png" alt="" onerror="var u=this.src;if(u.slice(-4)==='.png'){this.src=u.slice(0,-4)+'.jpg'}else if(u.slice(-4)==='.jpg'){this.src=u.slice(0,-4)+'.jpeg'}else{this.remove()}"><i>BE</i></a><a class="cname" href="https://www.bancoestado.cl/" target="_blank" rel="noopener">BancoEstado</a>Santiago, 2020 – 2024</div>
         <div>
           <h3>Data Analyst</h3>
           <p class="co"><span data-l="en">Chile's public bank · Digital unit, MercadoAquí</span><span data-l="es">Banco público de Chile · Área digital, MercadoAquí</span></p>
-          <p data-l="en">Started as an intern before MercadoAquí launched and grew with it. Helped 5,000+ entrepreneurs grow on the marketplace and managed a database of 55,000+ customers with AI-driven segmentation. I also led weekly KPI reporting and UX/UI improvements to the platform.</p>
-          <p data-l="es">Empecé en prácticas antes del lanzamiento de MercadoAquí y crecí con el proyecto. Ayudé a más de 5.000 emprendedores en el marketplace y gestioné una base de más de 55.000 clientes con segmentación apoyada en IA. También me encargué de los informes semanales de KPIs y de mejoras de UX/UI en la plataforma.</p>
+          <p data-l="en"><b>5,000+ entrepreneurs and 55,000+ customers.</b> Started as an intern before MercadoAquí launched and grew with it. I handled AI-driven customer segmentation, weekly KPI reporting and UX/UI improvements to the platform.</p>
+          <p data-l="es"><b>+5.000 emprendedores y +55.000 clientes.</b> Empecé en prácticas antes del lanzamiento de MercadoAquí y crecí con el proyecto. Me encargué de la segmentación de clientes con IA, de los informes semanales de KPIs y de mejoras de UX/UI en la plataforma.</p>
         </div>
       </article>
       <article class="job">
-        <div class="when"><a class="logo" href="https://www.instagram.com/akitakids" target="_blank" rel="noopener" aria-label="Akitá"><img src="logos/akita.png" alt="" onerror="this.remove()"><i>Ak</i></a><a class="cname" href="https://www.instagram.com/akitakids" target="_blank" rel="noopener">Akitá</a>Santiago, 2021 – 2022</div>
+        <div class="when"><a class="logo" href="https://www.instagram.com/akitakids" target="_blank" rel="noopener" aria-label="Akitá"><img src="logos/akita.png" alt="" onerror="var u=this.src;if(u.slice(-4)==='.png'){this.src=u.slice(0,-4)+'.jpg'}else if(u.slice(-4)==='.jpg'){this.src=u.slice(0,-4)+'.jpeg'}else{this.remove()}"><i>Ak</i></a><a class="cname" href="https://www.instagram.com/akitakids" target="_blank" rel="noopener">Akitá</a>Santiago, 2021 – 2022</div>
         <div>
           <h3>Co-Founder, CMO &amp; PM</h3>
           <p class="co"><span data-l="en">Startup · Sustainable educational toys</span><span data-l="es">Emprendimiento · Juguetes educativos sostenibles</span></p>
-          <p data-l="en">Led marketing across social, SEO, SEM and content, and built and ran the Shopify store on my own. Contributed to a 50% increase in total sales.</p>
-          <p data-l="es">Lideré el marketing en redes, SEO, SEM y contenidos, y creé y gestioné yo solo la tienda en Shopify. Contribuí a un aumento del 50% en las ventas totales.</p>
+          <p data-l="en"><b>+50% in total sales.</b> Led marketing across social, SEO, SEM and content, and built and ran the Shopify store on my own.</p>
+          <p data-l="es"><b>+50 % en ventas totales.</b> Lideré el marketing (redes, SEO, SEM y contenidos) y creé y gestioné yo solo la tienda en Shopify.</p>
         </div>
       </article>
       <article class="job">
-        <div class="when"><a class="logo" href="https://agrapp.cl/" target="_blank" rel="noopener" aria-label="Agrapp"><img src="logos/agrapp.png" alt="" onerror="this.remove()"><i>Ag</i></a><a class="cname" href="https://agrapp.cl/" target="_blank" rel="noopener">Agrapp</a>Santiago, 2021</div>
+        <div class="when"><a class="logo" href="https://agrapp.cl/" target="_blank" rel="noopener" aria-label="Agrapp"><img src="logos/agrapp.png" alt="" onerror="var u=this.src;if(u.slice(-4)==='.png'){this.src=u.slice(0,-4)+'.jpg'}else if(u.slice(-4)==='.jpg'){this.src=u.slice(0,-4)+'.jpeg'}else{this.remove()}"><i>Ag</i></a><a class="cname" href="https://agrapp.cl/" target="_blank" rel="noopener">Agrapp</a>Santiago, 2021</div>
         <div>
           <h3><span data-l="en">Commercial Analyst Intern</span><span data-l="es">Analista Comercial en prácticas</span></h3>
           <p class="co"><span data-l="en">AgTech startup</span><span data-l="es">Startup AgTech</span></p>
-          <p data-l="en">Automated processes with ActiveCampaign, HubSpot, Zapier, Mailchimp and Slack. Ran Google Ads campaigns, built event landing pages and launched an Intercom chatbot for lead generation.</p>
-          <p data-l="es">Automaticé procesos con ActiveCampaign, HubSpot, Zapier, Mailchimp y Slack. Gestioné campañas de Google Ads, creé landing pages para eventos e implementé un chatbot de Intercom para captar leads.</p>
+          <p data-l="en"><b>End-to-end marketing automation.</b> Automated processes (HubSpot, Zapier…), ran Google Ads campaigns, built event landing pages and launched an Intercom chatbot for lead generation.</p>
+          <p data-l="es"><b>Marketing automatizado de principio a fin.</b> Automaticé procesos (HubSpot, Zapier…), gestioné campañas de Google Ads, creé landing pages para eventos e implementé un chatbot de Intercom para captar leads.</p>
         </div>
       </article>
     </div>
@@ -595,7 +607,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <p>El programa entiende el valor más allá de lo económico, con el impacto social y ambiental como eje central. Guiado por profesores de primer nivel, expertos de la industria y mentores exalumnos, desarrollé iniciativa, resiliencia, trabajo en equipo y liderazgo.</p>
 <p>La Escuela de Negocios de la Universidad Adolfo Ibáñez es la única de Chile con la triple corona de acreditación internacional: AACSB (EE. UU.), EQUIS (Europa) y AMBA (Reino Unido).</p></div></template>
       </article>
-      <article class="ed" data-logo="puc" data-ini="UC">
+      <article class="ed" data-logo="uc" data-ini="UC">
         <span class="yr">Santiago, 2022</span>
         <h3><span data-l="en">Diploma in Corporate Sustainability &amp; Innovation</span><span data-l="es">Diplomado en Sostenibilidad Corporativa e Innovación</span></h3>
         <p class="sch"><a class="uni" href="https://www.uc.cl/" target="_blank" rel="noopener">Pontificia Universidad Católica de Chile</a></p>
@@ -656,7 +668,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <div data-fx="sport"><h3><span data-l="en">Sports</span><span data-l="es">Deporte</span></h3><p data-l="en">Football first (Hala Madrid!), plus rugby and the gym. Teamwork and discipline I take to work.</p><p data-l="es">Fútbol ante todo (¡Hala Madrid!), además de rugby y gimnasio. Trabajo en equipo y disciplina que llevo al trabajo.</p></div>
       <div data-fx="art"><h3><span data-l="en">Art</span><span data-l="es">Arte</span></h3><p data-l="en">Courses in art history and analysis gave me an eye for design that shapes how I solve problems.</p><p data-l="es">Cursos de historia y análisis del arte me dieron un ojo para el diseño que influye en cómo resuelvo problemas.</p></div>
       <div data-fx="tech"><h3><span data-l="en">Technology</span><span data-l="es">Tecnología</span></h3><p data-l="en">From gaming to AI and photo editing, I love trying new tools.</p><p data-l="es">De los videojuegos a la IA y la edición de fotos, me encanta probar herramientas nuevas.</p></div>
-      <div class="trip" data-fx="travel"><h3><span data-l="en">Travel</span><span data-l="es">Viajes</span></h3><p data-l="en">My greatest passion: new cultures, history and people keep my curiosity alive.</p><p data-l="es">Mi mayor pasión: nuevas culturas, historia y personas mantienen viva mi curiosidad.</p><a class="tbtn" href="viajes.html"><span data-l="en">See photos</span><span data-l="es">Ver fotos</span></a></div>
+      <div class="trip" data-fx="travel"><h3><span data-l="en">Travel</span><span data-l="es">Viajes</span></h3><p data-l="en">My greatest passion: new cultures, history and people keep my curiosity alive.</p><p data-l="es">Mi mayor pasión: nuevas culturas, historia y personas mantienen viva mi curiosidad.</p><a class="tbtn" href="/viajes"><span data-l="en">See photos</span><span data-l="es">Ver fotos</span></a></div>
     </div>
   </div>
 </section>
@@ -674,7 +686,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <p class="famnote" data-l="es">A cada uno de ustedes, si algún día llegan a leer este mensaje: sepan que los llevo muy cerca del corazón y que los quiero con todo mi ser.</p>
     </div>
     <!-- FOTO: sube una foto familiar al repositorio como "familia.jpg" y se mostrará aquí -->
-    <figure class="famphoto"><img src="familia.jpg" alt="" onerror="this.remove()"></figure>
+    <figure class="famphoto"><img src="familia.jpg" alt="" onerror="var u=this.src;if(u.slice(-4)==='.png'){this.src=u.slice(0,-4)+'.jpg'}else if(u.slice(-4)==='.jpg'){this.src=u.slice(0,-4)+'.jpeg'}else{this.remove()}"></figure>
     </div>
   </div>
 </section>
@@ -725,12 +737,25 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     function fallback(){var ta=document.createElement('textarea');ta.value=v;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok()}catch(e){location.href='mailto:'+v}ta.remove()}
   });
 
+  // etiqueta que sigue al cursor sobre el email (solo ordenador)
+  if(matchMedia('(hover:hover) and (pointer:fine)').matches){
+    var tip=document.createElement('div');tip.className='ctip';tip.setAttribute('aria-hidden','true');document.body.appendChild(tip);
+    var tx=0,ty=0,tr=0;
+    function label(done){var es=document.documentElement.lang==='es';tip.textContent=done?(es?'Copiado ✓':'Copied ✓'):(es?'Click para copiar':'Click to copy')}
+    function pos(){tr=0;tip.style.transform='translate('+(tx+14)+'px,'+(ty+20)+'px)'}
+    mail.addEventListener('pointerenter',function(e){tx=e.clientX;ty=e.clientY;label(mail.classList.contains('done'));pos();tip.classList.add('on')});
+    mail.addEventListener('pointermove',function(e){tx=e.clientX;ty=e.clientY;if(!tr)tr=requestAnimationFrame(pos)});
+    mail.addEventListener('pointerleave',function(){tip.classList.remove('on')});
+    mail.addEventListener('click',function(){setTimeout(function(){if(mail.classList.contains('done')){label(true);setTimeout(function(){label(false)},1800)}},60)});
+    addEventListener('scroll',function(){tip.classList.remove('on')},{passive:true});
+  }
+
   // education sheet
   var sh=document.getElementById('sheet'), opener=null;
   function openSheet(card){
     opener=card.querySelector('.emore');
     var img=sh.querySelector('.slogo img'); img.style.display='';
-    img.onerror=function(){img.style.display='none'};
+    img.onerror=function(){var u=img.src;if(u.slice(-4)==='.png'){img.src=u.slice(0,-4)+'.jpg'}else if(u.slice(-4)==='.jpg'){img.src=u.slice(0,-4)+'.jpeg'}else{img.style.display='none'}};
     img.src='logos/'+card.dataset.logo+'.png';
     sh.querySelector('.slogo i').textContent=card.dataset.ini;
     sh.querySelector('.yr').textContent=card.querySelector('.yr').textContent;
