@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>José Castex – Travel</title>
+<style>
+:root{--bg:#fff;--tile:#f5f5f7;--ink:#1d1d1f;--mute:#6e6e73;--link:#0066cc;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:1.0625rem;line-height:1.5;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:4px}
+html[lang="en"] [data-l="es"],html[lang="es"] [data-l="en"]{display:none!important}
+
+.nav{position:sticky;top:0;z-index:500;background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08)}
+.nav-in{max-width:1024px;margin:0 auto;padding:0 22px;height:48px;display:flex;align-items:center;gap:20px;font-size:14px}
+.back{color:var(--ink);display:inline-flex;align-items:center;gap:6px;transform-origin:left center;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+.back:active{transform:scale(.96)}
+@media (hover:hover){.back:hover{transform:scale(1.12);font-weight:700;background:linear-gradient(90deg,#0066cc,#7b3fe4 55%,#d12f6a);-webkit-background-clip:text;background-clip:text;color:transparent}}
+.brand{display:inline-block;margin-right:auto;font-weight:600;color:var(--ink);transform-origin:left center;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.brand:hover{transform:scale(1.14);font-weight:700;text-decoration:none;background:linear-gradient(90deg,#0066cc,#7b3fe4 55%,#d12f6a);-webkit-background-clip:text;background-clip:text;color:transparent}}
+.brand:active{transform:scale(.97)}
+@media (max-width:720px){.brand,.brand:hover,.brand:active,.brand:focus{background:linear-gradient(90deg,#0066cc,#7b3fe4 55%,#d12f6a);-webkit-background-clip:text;background-clip:text;color:transparent;text-decoration:none;-webkit-tap-highlight-color:transparent}}
+.lang{display:flex;background:var(--tile);border-radius:980px;padding:2px}
+.lang button{border:0;background:none;font:inherit;font-size:12px;padding:3px 10px;border-radius:980px;color:var(--mute);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:background-color .2s ease,color .2s ease,box-shadow .2s ease,transform .25s cubic-bezier(.2,.7,.2,1)}
+.lang .flag{width:16px;height:11px;border-radius:2px;flex:none;box-shadow:0 0 0 .5px rgba(0,0,0,.15)}
+.lang button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+@media (hover:hover){.lang button:hover{transform:scale(1.12);color:var(--ink)}}
+.lang button:active{transform:scale(.94)}
+@media (prefers-reduced-transparency:reduce){.nav{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}}
+
+header{text-align:center;padding:56px 22px 24px}
+h1{font-size:clamp(48px,9vw,88px);font-weight:700;letter-spacing:-.035em;line-height:1.05}
+.lede{font-size:clamp(19px,2.4vw,24px);color:var(--mute);max-width:640px;margin:16px auto 0;line-height:1.35}
+
+/* carrusel */
+.reel{background:#fff;color:var(--ink);padding:10px 0 60px;overflow:hidden}
+.stage{position:relative;height:clamp(340px,64vh,640px);perspective:3200px;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.it{position:absolute;left:50%;top:50%;border-radius:16px;overflow:hidden;background:#f5f5f7;cursor:pointer;will-change:transform;
+  transition:transform .75s cubic-bezier(.22,.8,.24,1),opacity .5s ease,width .75s cubic-bezier(.22,.8,.24,1),height .75s cubic-bezier(.22,.8,.24,1),box-shadow .6s ease;backface-visibility:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.06),0 10px 24px rgba(0,0,0,.14)}
+.it::after{content:'';position:absolute;inset:0;background:#000;opacity:var(--dim,0);transition:opacity .6s ease;pointer-events:none}
+.it.on{box-shadow:0 0 0 1px rgba(0,0,0,.06),0 18px 44px rgba(0,0,0,.2)}
+.it.on{cursor:default}
+.it img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:300;background:none;border:0;color:#fff;cursor:pointer;padding:18px 14px;opacity:.95;transition:opacity .25s ease,transform .3s cubic-bezier(.2,.7,.2,1)}
+.arrow svg{filter:drop-shadow(0 0 1px rgba(0,0,0,.55)) drop-shadow(0 3px 8px rgba(0,0,0,.45));display:block;width:clamp(26px,3.4vw,46px);height:clamp(110px,22vh,190px);overflow:visible}
+.arrow svg polyline{fill:none;stroke:currentColor;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.arrow.l{left:max(6px,1.5vw)}.arrow.r{right:max(6px,1.5vw)}
+@media (hover:hover){.arrow:hover{opacity:1;transform:translateY(-50%) scale(1.1)}}
+.arrow:active{transform:translateY(-50%) scale(.94)}
+.arrow[disabled]{opacity:.15;cursor:default;pointer-events:none}
+.cap{text-align:center;padding:26px 22px 0;min-height:104px}
+.place{font-size:clamp(20px,2.8vw,28px);font-weight:600;letter-spacing:-.018em;transition:opacity .25s ease}
+.year{color:var(--mute);font-size:clamp(15px,2vw,18px);margin-top:4px;transition:opacity .25s ease}
+.count{color:#86868b;font-size:13px;margin-top:10px;font-variant-numeric:tabular-nums}
+.cap.out .place,.cap.out .year{opacity:0}
+.empty{text-align:center;color:var(--mute);padding:60px 22px 120px}
+@media (prefers-reduced-motion:reduce){.it,.arrow,.place,.year{transition:none}}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <div class="nav-in">
+    <a class="back" href="index.html#beyond">‹ <span data-l="en">Back</span><span data-l="es">Volver</span></a>
+    <a class="brand" href="index.html">José Castex</a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-set="en" aria-pressed="true"><svg class="flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><clipPath id="fkuk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><path d="M0,0v30h60v-30z" fill="#012169"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#fkuk)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg>EN</button>
+      <button type="button" data-set="es" aria-pressed="false"><svg class="flag" viewBox="0 0 3 2" preserveAspectRatio="none" aria-hidden="true"><rect width="3" height="2" fill="#AA151B"/><rect y=".5" width="3" height="1" fill="#F1BF00"/></svg>ES</button>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <h1><span data-l="en">Travel</span><span data-l="es">Viajes</span></h1>
+  <p class="lede"><span data-l="en">My greatest passion. A few snapshots from the places that shaped how I see the world.</span><span data-l="es">Mi mayor pasión. Algunas fotos de los lugares que han cambiado mi forma de ver el mundo.</span></p>
+</header>
+
+<!-- FOTOS: sube tus fotos (JPG) a una carpeta llamada "viajes" con los nombres 1.jpg, 2.jpg, 3.jpg... (hasta 80) -->
+<section class="reel" id="reel" aria-label="Travel photos">
+  <div class="stage" id="stage">
+    <button type="button" class="arrow l" id="prev" aria-label="Previous"><svg viewBox="0 0 40 180" preserveAspectRatio="none"><polyline points="34,4 6,90 34,176"/></svg></button>
+    <button type="button" class="arrow r" id="next" aria-label="Next"><svg viewBox="0 0 40 180" preserveAspectRatio="none"><polyline points="6,4 34,90 6,176"/></svg></button>
+  </div>
+  <div class="cap" id="cap">
+    <div class="place" id="place"></div>
+    <div class="year" id="year"></div>
+    <div class="count" id="count"></div>
+  </div>
+</section>
+<p class="empty" id="empty" hidden><span data-l="en">Photos coming soon.</span><span data-l="es">Pronto habrá fotos aquí.</span></p>
+
+<!-- PIES DE FOTO: escribe aquí ciudad, país y año de cada foto. Ejemplo: 1: ['Madrid, España', '2023'] -->
+<script>
+var CAP = {
+  // 1: ['Ciudad, País', '2026'],
+  // 2: ['Ciudad, País', '2026'],
+};
+</script>
+
+<script>
+(function(){
+  var root=document.documentElement, btns=document.querySelectorAll('.lang button');
+  function set(l){root.lang=l;btns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===l)});try{localStorage.setItem('lang',l)}catch(e){}}
+  var saved=null;try{saved=localStorage.getItem('lang')}catch(e){}
+  set(saved||((navigator.language||'en').slice(0,2)==='es'?'es':'en'));
+  btns.forEach(function(b){b.addEventListener('click',function(){set(b.dataset.set)})});
+
+  var DEMO=true;   // true: mientras no haya fotos, muestra cuadros de ejemplo. Cuando subas tus fotos, cámbialo a false
+  var MAX=80, RANGE=5;
+  var stage=document.getElementById('stage'), cap=document.getElementById('cap'), place=document.getElementById('place'),
+      year=document.getElementById('year'), count=document.getElementById('count'),
+      prevB=document.getElementById('prev'), nextB=document.getElementById('next');
+  var items=[], cur=0;
+
+  function capFor(n){return (typeof CAP!=='undefined'&&CAP[n])||['Ciudad, País','2026'];}
+
+  function layout(){
+    if(!items.length)return;
+    var vw=stage.clientWidth, sh=stage.clientHeight, Hc=Math.min(sh*.9,620);
+    items.forEach(function(it){
+      var w=Hc*it.r, h=Hc;
+      if(w>vw*.74){w=vw*.74;h=w/it.r}
+      it.w=w;it.h=h;it.el.style.width=w+'px';it.el.style.height=h+'px';
+    });
+    var c=items[cur];
+    items.forEach(function(it,i){
+      var N=items.length, d=i-cur;
+      if(d>N/2)d-=N; else if(d<-N/2)d+=N;
+      var ad=Math.abs(d), sg=d<0?-1:1, el=it.el;
+      var jump=it.d!==undefined&&Math.abs(it.d-d)>N/2;   // da la vuelta por detrás: sin animación
+      it.d=d;
+      if(jump)el.style.transition='none';
+      el.classList.toggle('on',d===0);
+      if(ad>RANGE+1){el.style.opacity='0';el.style.pointerEvents='none';el.style.transform='translate(-50%,-50%) scale(.4)';el.style.zIndex=1;return;}
+      var x=0,s=1,rot=0;
+      if(d!==0){
+        var cursor=c.w/2*.9;
+        for(var j=1;j<=ad;j++){
+          var n=items[((cur+sg*j)%N+N)%N]; if(!n)break;
+          var sj=Math.max(.48,.74-.06*(j-1)), wj=n.w*sj;
+          if(j===ad){x=sg*(cursor+wj/2);s=sj;break}
+          cursor+=wj*.55;
+        }
+        rot=-sg*9;
+      }
+      var show=ad<=RANGE-1;
+      el.style.opacity=show?'1':'0';
+      el.style.pointerEvents=show?'auto':'none';
+      el.style.setProperty('--dim',d===0?0:Math.min(.28,.07*ad).toFixed(2));
+      el.style.zIndex=String(100-ad);
+      el.style.transform='translate(-50%,-50%) translateX('+x+'px) rotateY('+rot+'deg) scale('+s+')';
+      if(ad<=RANGE+3)load(it);
+      if(jump){el.offsetWidth;el.style.transition='';}
+    });
+  }
+
+  function load(it){if(!it.loaded&&it.src){it.loaded=true;it.img.decoding='async';it.img.src=it.src}}
+  function warm(){   // va cargando en segundo plano las fotos cercanas a la que estás viendo (no las 200 de golpe)
+    var N=items.length;
+    setInterval(function(){
+      var best=null,bd=1e9;
+      items.forEach(function(it,i){if(it.loaded)return;var d=Math.abs(i-cur);d=Math.min(d,N-d);if(d<bd){bd=d;best=it}});
+      if(best&&bd<=12)load(best);
+    },160);
+  }
+  function caption(fade){
+    var it=items[cur], c=capFor(it.n);
+    function put(){place.textContent=c[0];year.textContent=c[1];count.textContent=(cur+1)+' / '+items.length}
+    if(!fade){put();return}
+    cap.classList.add('out');
+    setTimeout(function(){put();cap.classList.remove('out')},180);
+  }
+  function goTo(i){
+    var N=items.length; i=((i%N)+N)%N; if(i===cur)return;
+    cur=i; layout(); caption(true);
+  }
+
+  function build(list){
+    list.forEach(function(o){
+      var el=document.createElement('div'); el.className='it';
+      var img=new Image(); img.alt=''; img.draggable=false; el.appendChild(img);
+      var it={el:el,img:img,n:o.n,src:o.src,r:o.r||.8,loaded:false};
+      img.onload=function(){if(img.naturalWidth){it.r=img.naturalWidth/img.naturalHeight;layout()}};
+      el.addEventListener('click',function(){var k=items.indexOf(it);if(k!==cur)goTo(k)});
+      stage.appendChild(el); items.push(it);
+    });
+    caption(false); layout(); warm();
+  }
+
+  function demo(){
+    var R=[[4,5],[3,2],[1,1],[4,5],[16,9],[3,4],[3,2],[1,1],[4,5],[3,2],[4,5],[1,1],[16,9],[3,4]];
+    build(R.map(function(r,i){
+      var w=r[0]*200,h=r[1]*200;
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'"><rect width="100%" height="100%" fill="#f5f5f7"/><rect x="1" y="1" width="'+(w-2)+'" height="'+(h-2)+'" fill="none" stroke="#d2d2d7" stroke-width="2"/></svg>';
+      return {n:i+1,src:'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg),r:r[0]/r[1]};
+    }));
+  }
+
+  /* lista de fotos: viajes/fotos.txt, una línea por foto:  archivo.jpg | Ciudad, País | Año */
+  function start(found){
+    found.sort(function(a,b){
+      var ya=parseInt(capFor(a.n)[1],10), yb=parseInt(capFor(b.n)[1],10);
+      if(isNaN(ya))ya=9999; if(isNaN(yb))yb=9999;
+      return ya-yb||(a.num||a.n)-(b.num||b.n);      // orden cronológico por año; si empatan, por el número del nombre
+    });
+    if(found.length)build(found);
+    else if(DEMO)demo();
+    else{document.getElementById('reel').hidden=true;document.getElementById('empty').hidden=false}
+  }
+  function probeNumbered(){   // plan B: viajes/1.jpg, 2.jpg, ... con los pies de foto del bloque CAP
+    var probes=[];
+    for(var n=1;n<=MAX;n++){(function(n){
+      var u='viajes/'+n+'.jpg';
+      probes.push(fetch(u,{method:'HEAD'}).then(function(r){return r.ok?{n:n,src:u}:null}).catch(function(){return null}));
+    })(n)}
+    Promise.all(probes).then(function(res){start(res.filter(Boolean))});
+  }
+  /* 1) lee los nombres de la carpeta "viajes" de GitHub: 1_Ciudad_País_Año.jpg */
+  var OWNER=location.hostname.slice(-10)==='github.io'?location.hostname.split('.')[0]:'josetomascd',
+      REPO=location.hostname.slice(-10)==='github.io'?location.hostname:'josetomascd.github.io';
+  function fromNames(names){
+    var list=[];
+    names.forEach(function(raw){
+      if(!/\.(jpe?g|png|webp)$/i.test(raw))return;
+      var base=raw.replace(/\.[^.]+$/,'').normalize('NFC'), parts=base.split('_');
+      var num=NaN;
+      if(parts.length>1&&/^\d+$/.test(parts[0]))num=parseInt(parts.shift(),10);
+      var clean=function(t){return (t||'').replace(/-/g,' ').trim()};
+      var city=clean(parts[0]), country=clean(parts[1]), yr=(parts[2]||'').trim();
+      if(parts.length===2&&/^\d{4}$/.test(parts[1])){country='';yr=parts[1]}
+      var n=list.length+1;
+      CAP[n]=[country?city+', '+country:city, yr];
+      list.push({n:n,src:'viajes/'+encodeURIComponent(raw),num:isNaN(num)?1e6+n:num});
+    });
+    return list;
+  }
+  function viaApi(){
+    var key='fotosViajes', c=null;
+    try{c=JSON.parse(sessionStorage.getItem(key)||'null')}catch(e){}
+    var get=c&&Date.now()-c.t<300000?Promise.resolve(c.names):
+      fetch('https://api.github.com/repos/'+OWNER+'/'+REPO+'/contents/viajes').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){
+        var names=j.filter(function(f){return f.type==='file'}).map(function(f){return f.name});
+        try{sessionStorage.setItem(key,JSON.stringify({t:Date.now(),names:names}))}catch(e){}
+        return names;
+      });
+    return get.then(function(names){var l=fromNames(names);if(!l.length)throw 0;return l});
+  }
+  /* 2) plan B: viajes/fotos.txt, una línea por foto:  archivo.jpg | Ciudad, País | Año */
+  function viaTxt(){
+    return fetch('viajes/fotos.txt').then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){
+      var list=[];
+      t.split(/\r?\n/).forEach(function(line){
+        line=line.trim(); if(!line||line.charAt(0)==='#')return;
+        var p=line.split('|').map(function(x){return x.trim()}); if(!p[0])return;
+        var n=list.length+1; CAP[n]=[p[1]||'',p[2]||''];
+        list.push({n:n,src:'viajes/'+encodeURIComponent(p[0]),num:n});
+      });
+      if(!list.length)throw 0;
+      return list;
+    });
+  }
+  viaApi().catch(viaTxt).then(start).catch(probeNumbered);
+
+  prevB.addEventListener('click',function(){goTo(cur-1)});
+  nextB.addEventListener('click',function(){goTo(cur+1)});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft')goTo(cur-1);
+    if(e.key==='ArrowRight')goTo(cur+1);
+  });
+  addEventListener('resize',layout);
+
+  /* deslizar con el dedo o arrastrar con el ratón */
+  var sx=null;
+  stage.addEventListener('pointerdown',function(e){sx=e.clientX});
+  addEventListener('pointerup',function(e){
+    if(sx===null)return; var dx=e.clientX-sx; sx=null;
+    if(Math.abs(dx)>60)goTo(cur+(dx<0?1:-1));
+  });
+  addEventListener('pointercancel',function(){sx=null});
+})();
+</script>
+</body>
+</html>
