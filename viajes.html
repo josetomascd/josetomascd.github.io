@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>José Castex – Travel</title>
+<script>try{var _l=localStorage.getItem("lang")}catch(e){}document.documentElement.lang=_l||((navigator.language||"en").slice(0,2)==="es"?"es":"en")</script>
 <style>
 :root{--bg:#fff;--tile:#f5f5f7;--ink:#1d1d1f;--mute:#6e6e73;--link:#0066cc;
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif}
@@ -59,13 +60,14 @@ h1{font-size:clamp(48px,9vw,88px);font-weight:700;letter-spacing:-.035em;line-he
 .cap.out .place,.cap.out .year,.cap.out .flag{opacity:0}
 .empty{text-align:center;color:var(--mute);padding:60px 22px 120px}
 @media (prefers-reduced-motion:reduce){.it,.arrow,.place,.year,.flag{transition:none}}
+@media (pointer:coarse){.lang button{position:relative}.lang button::before{content:"";position:absolute;inset:-10px -3px}}
 </style>
 </head>
 <body>
 <nav class="nav" aria-label="Main">
   <div class="nav-in">
-    <a class="back" href="index.html#beyond">‹ <span data-l="en">Back</span><span data-l="es">Volver</span></a>
-    <a class="brand" href="index.html">José Castex</a>
+    <a class="back" href="/#beyond">‹ <span data-l="en">Back</span><span data-l="es">Volver</span></a>
+    <a class="brand" href="/">José Castex</a>
     <div class="lang" role="group" aria-label="Language">
       <button type="button" data-set="en" aria-pressed="true"><svg class="flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><clipPath id="fkuk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><path d="M0,0v30h60v-30z" fill="#012169"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#fkuk)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg>EN</button>
       <button type="button" data-set="es" aria-pressed="false"><svg class="flag" viewBox="0 0 3 2" preserveAspectRatio="none" aria-hidden="true"><rect width="3" height="2" fill="#AA151B"/><rect y=".5" width="3" height="1" fill="#F1BF00"/></svg>ES</button>
@@ -104,13 +106,13 @@ var CAP = {
 <script>
 (function(){
   var root=document.documentElement, btns=document.querySelectorAll('.lang button');
-  function set(l){root.lang=l;btns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===l)});try{localStorage.setItem('lang',l)}catch(e){}}
+  function set(l){root.lang=l;document.title=l==='es'?'José Castex – Viajes':'José Castex – Travel';btns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===l)});try{localStorage.setItem('lang',l)}catch(e){}}
   var saved=null;try{saved=localStorage.getItem('lang')}catch(e){}
   set(saved||((navigator.language||'en').slice(0,2)==='es'?'es':'en'));
   btns.forEach(function(b){b.addEventListener('click',function(){set(b.dataset.set);if(items.length)caption(false)})});
 
   var DEMO=true;   // true: mientras no haya fotos, muestra cuadros de ejemplo. Cuando subas tus fotos, cámbialo a false
-  var MAX=80, RANGE=5;
+  var MAX=80, RANGE=5, PHONE=matchMedia('(max-width:720px)').matches, NEAR=PHONE?2:4, AHEAD=PHONE?3:6;   // fotos que se cargan a cada lado
   var stage=document.getElementById('stage'), cap=document.getElementById('cap'), place=document.getElementById('place'),
       year=document.getElementById('year'), count=document.getElementById('count'),
       prevB=document.getElementById('prev'), nextB=document.getElementById('next');
@@ -120,7 +122,7 @@ var CAP = {
   /* Español → inglés para los pies de foto. Si un nombre no está aquí, se muestra tal cual. Añade los tuyos con el formato 'nombre en español':'English name' (minúsculas, sin tildes) */
   var EN={'espana':'Spain','italia':'Italy','francia':'France','alemania':'Germany','reino unido':'United Kingdom','inglaterra':'England','escocia':'Scotland','irlanda':'Ireland','portugal':'Portugal','grecia':'Greece','turquia':'Türkiye','egipto':'Egypt','marruecos':'Morocco','estados unidos':'United States','eeuu':'USA','mexico':'Mexico','brasil':'Brazil','peru':'Peru','chile':'Chile','argentina':'Argentina','colombia':'Colombia','japon':'Japan','china':'China','tailandia':'Thailand','suiza':'Switzerland','austria':'Austria','belgica':'Belgium','paises bajos':'Netherlands','holanda':'Netherlands','republica checa':'Czech Republic','hungria':'Hungary','polonia':'Poland','croacia':'Croatia','dinamarca':'Denmark','suecia':'Sweden','noruega':'Norway','finlandia':'Finland','islandia':'Iceland','emiratos arabes unidos':'United Arab Emirates','jordania':'Jordan','sudafrica':'South Africa','canada':'Canada','cuba':'Cuba','republica dominicana':'Dominican Republic','roma':'Rome','florencia':'Florence','venecia':'Venice','milan':'Milan','napoles':'Naples','turin':'Turin','londres':'London','paris':'Paris','nueva york':'New York','lisboa':'Lisbon','oporto':'Porto','atenas':'Athens','estambul':'Istanbul','el cairo':'Cairo','berlin':'Berlin','munich':'Munich','viena':'Vienna','praga':'Prague','budapest':'Budapest','varsovia':'Warsaw','cracovia':'Krakow','copenhague':'Copenhagen','estocolmo':'Stockholm','bruselas':'Brussels','brujas':'Bruges','ginebra':'Geneva','zurich':'Zurich','moscu':'Moscow','tokio':'Tokyo','pekin':'Beijing','cordoba':'Cordoba','sevilla':'Seville','pais vasco':'Basque Country','cataluna':'Catalonia','mallorca':'Majorca','canarias':'Canary Islands','islas canarias':'Canary Islands','la habana':'Havana','ciudad de mexico':'Mexico City','rio de janeiro':'Rio de Janeiro','lima':'Lima','cusco':'Cusco','santiago':'Santiago','abu simbel':'Abu Simbel','asuan':'Aswan','luxor':'Luxor','marrakech':'Marrakesh'};
   Object.assign(EN,{"alicante": "Alicante", "atenas": "Athens", "amsterdam": "Amsterdam", "ben smim": "Ben Smim", "bruselas": "Brussels", "buenos aires": "Buenos Aires", "burano": "Burano", "cambridge": "Cambridge", "capadocia": "Cappadocia", "chester": "Chester", "ciudad del vaticano": "Vatican City", "copenhague": "Copenhagen", "covadonga": "Covadonga", "edimburgo": "Edinburgh", "el cairo": "Cairo", "estambul": "Istanbul", "fes": "Fez", "lenno": "Lenno", "liscannor": "Liscannor", "malmo": "Malmö", "tallin": "Tallinn", "wadi rum": "Wadi Rum", "xcaret": "Xcaret", "abu simbel": "Abu Simbel", "ait taguella": "Ait Taguella", "andorra la vieja": "Andorra la Vella", "as salt": "As-Salt", "bolonia": "Bologna", "brujas": "Bruges", "chichen itza": "Chichén Itzá", "colonia del sacreamento": "Colonia del Sacramento", "colonia": "Cologne", "cordoba": "Córdoba", "florencia": "Florence", "gante": "Ghent", "jerusalem": "Jerusalem", "la valeta": "Valletta", "marsella": "Marseille", "monaco ville": "Monaco-Ville", "montecarlo": "Monte Carlo", "napoles": "Naples", "parque nacional los glaciares": "Los Glaciares National Park", "pompeya": "Pompeii", "rapa nui": "Rapa Nui", "sevilla": "Seville", "torino": "Turin", "turin": "Turin", "torres del paine": "Torres del Paine", "vilna": "Vilnius", "venecia": "Venice", "roma": "Rome", "londres": "London", "lisboa": "Lisbon", "oporto": "Porto", "praga": "Prague", "viena": "Vienna", "mallorca": "Majorca", "espana": "Spain", "grecia": "Greece", "paises bajos": "Netherlands", "marruecos": "Morocco", "belgica": "Belgium", "hungria": "Hungary", "italia": "Italy", "inglaterra": "England", "turquia": "Turkey", "irlanda": "Ireland", "escocia": "Scotland", "egipto": "Egypt", "suecia": "Sweden", "francia": "France", "jordania": "Jordan", "chequia": "Czechia", "brasil": "Brazil", "estonia": "Estonia", "mexico": "Mexico", "dinamarca": "Denmark", "alemania": "Germany", "gales": "Wales", "irlanda del norte": "Northern Ireland", "palestina": "Palestine", "estados unidos": "United States", "letonia": "Latvia", "lituania": "Lithuania"});
-  var ES={'rio de janeiro':'Río de Janeiro','milan':'Milán','turin':'Turín','torino':'Turín','malmo':'Malmö','colonia del sacreamento':'Colonia del Sacramento','jerusalem':'Jerusalén'};
+  var ES={'monaco ville':'Monaco-Ville','monaco':'Mónaco','as salt':'As-Salt','dublin':'Dublín','paris':'París','rio de janeiro':'Río de Janeiro','milan':'Milán','turin':'Turín','torino':'Turín','malmo':'Malmö','colonia del sacreamento':'Colonia del Sacramento','jerusalem':'Jerusalén'};
   function plain(t){return t.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim()}
   function tr(text){
     if(root.lang!=='en')return text.split(', ').map(function(p){return ES[plain(p)]||p}).join(', ');
@@ -166,7 +168,7 @@ var CAP = {
       el.style.setProperty('--dim',d===0?0:Math.min(.28,.07*ad).toFixed(2));
       el.style.zIndex=String(100-ad);
       el.style.transform='translate(-50%,-50%) translateX('+x+'px) rotateY('+rot+'deg) scale('+s+')';
-      if(ad<=RANGE+3)load(it);
+      if(ad<=NEAR)load(it);
       if(jump){el.offsetWidth;el.style.transition='';}
     });
   }
@@ -177,7 +179,7 @@ var CAP = {
     setInterval(function(){
       var best=null,bd=1e9;
       items.forEach(function(it,i){if(it.loaded)return;var d=Math.abs(i-cur);d=Math.min(d,N-d);if(d<bd){bd=d;best=it}});
-      if(best&&bd<=12)load(best);
+      if(best&&bd<=AHEAD)load(best);
     },160);
   }
   function caption(fade){
@@ -187,9 +189,13 @@ var CAP = {
     cap.classList.add('out');
     setTimeout(function(){put();cap.classList.remove('out')},180);
   }
+  function keepCap(){   // si el pie de foto queda bajo la pantalla, baja lo justo para verlo
+    var b=cap.getBoundingClientRect().bottom, H=innerHeight;
+    if(b>H-12)scrollBy({top:b-H+28,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  }
   function goTo(i){
     var N=items.length; i=((i%N)+N)%N; if(i===cur)return;
-    cur=i; layout(); caption(true);
+    cur=i; layout(); caption(true); keepCap();
   }
 
   function build(list){
@@ -214,11 +220,24 @@ var CAP = {
   }
 
   /* lista de fotos: viajes/fotos.txt, una línea por foto:  archivo.jpg | Ciudad, País | Año */
+  /* ORDEN de los viajes dentro de un mismo año (opcional): ciudades en el orden en que las visitaste, de la más reciente a la más antigua.
+     Las que no estén aquí se agrupan por país y ciudad. Ejemplo:  '2024':['Londres','Oxford','Roma'] */
+  var ORDEN={'2026':['Moraira','Bocairent','Zaragoza','Edimburgo','Glenfinnan','Inverness','Paris','Vilna','Trakai','Riga','Tallin'],
+    '2025':['Copenhague','Malmo','Salamanca','Oporto','Costa Nova do Prado','La Valeta','Marsaxlokk','Gozo','Bath','Bristol','Cardiff','Caerphilly','Conwy','Chester','Liverpool','Manchester','Lanzarote','Mallorca','Valldemossa','Covadonga','Barcelona'],
+    '2024':['Granada','Venecia','Murano','Burano','Verona','Milan','Turin','Riomaggiore','Vernazza','Monterosso','Bolonia','Florencia','Roma','Ciudad del Vaticano','Napoles','Pompeya','Sorrento','Capri',
+            'Lecco','Lenno','Milan#1','Varenna','Madrid','Portugal','Inglaterra','Cordoba','Jerez de la Frontera','Setenil de las Bodegas','Sevilla','Irlanda','Irlanda del Norte','Valencia','Alicante','Segovia'],
+    '2023':['Andorra','Argentina','Segovia','Toledo','Marruecos','Francia','Brasil'],
+    '2022':['Marsella','Monaco','Venecia','Milan','Riomaggiore','Pisa','Roma','Sorrento','Hungria','Austria','Grecia','El Cairo','Egipto','Jordania','Palestina','Capadocia','Estambul','Chequia','Alemania','Belgica','Paises Bajos','Argentina','Uruguay'],
+    '2014':['Chile','Argentina']};   // dentro de cada año: del viaje más reciente al más antiguo; dentro de cada viaje, en el orden en que lo visitaste
+  function canon(t){var k=plain(t);return plain(ES[k]||t)}
+  function parts(o){var p=capFor(o.n)[0].split(', ');return {city:canon(p[0]),country:canon(p[1]||p[0])}}
+  function key(o){var p=parts(o);return p.country+'|'+p.city}
+  function trip(o){var y=capFor(o.n)[1],L=(ORDEN[y]||[]).map(canon),p=parts(o),i=L.indexOf(p.city+'#'+(o.num||1));if(i<0)i=L.indexOf(p.city);if(i<0)i=L.indexOf(p.country);return i<0?999:i}   // busca 'Ciudad#número', luego ciudad, luego país
   function start(found){
     found.sort(function(a,b){
       var ya=parseInt(capFor(a.n)[1],10), yb=parseInt(capFor(b.n)[1],10);
       if(isNaN(ya))ya=-1; if(isNaN(yb))yb=-1;
-      return yb-ya||(a.num||a.n)-(b.num||b.n);      // del año más reciente al más antiguo; sin año al final; si empatan, por número
+      return yb-ya||trip(a)-trip(b)||key(a).localeCompare(key(b))||(a.num||a.n)-(b.num||b.n);   // año (nuevo → antiguo), viaje, ciudad, número de foto
     });
     if(found.length)build(found);
     else if(DEMO)demo();
@@ -247,7 +266,7 @@ var CAP = {
       if(parts.length===2&&/^\d{4}$/.test(parts[1])){country='';yr=parts[1]}
       var n=list.length+1;
       CAP[n]=[country?city+', '+country:city, yr];
-      list.push({n:n,src:'viajes/'+encodeURIComponent(raw),num:isNaN(num)?1e6+n:num});
+      list.push({n:n,src:'viajes/'+encodeURIComponent(raw),num:isNaN(num)?1:num});
     });
     return list;
   }
