@@ -341,6 +341,44 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .hero{--pz:min(320px,64vw);overflow-x:clip;overflow-y:visible}
 .portrait{width:var(--pz);margin:56px auto calc(var(--pz) / -2);position:relative;z-index:2;box-shadow:0 0 0 6px #fff,0 26px 60px -12px rgba(0,0,0,.22),0 8px 20px rgba(0,0,0,.06)}
 .about{padding-top:calc(min(320px,64vw) / 2 + 76px)}
+
+/* proyecto destacado */
+.card.feat{position:relative;background:linear-gradient(var(--dark-tile),var(--dark-tile)) padding-box,linear-gradient(135deg,#2997ff,#a77bff 52%,#ff5f8f) border-box;border:1.5px solid transparent}
+.card.feat .pnew{align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,#2997ff,#a77bff 55%,#ff5f8f);border-radius:980px;padding:5px 12px;margin-bottom:16px}
+.card .pmeta{color:var(--dark-mute);font-size:15px;margin-top:10px}
+.card .ptech{color:#6e6e73;font-size:13px;margin-top:18px;letter-spacing:.01em}
+.card.flash{animation:flash 1.6s cubic-bezier(.2,.7,.2,1)}
+@keyframes flash{0%,100%{box-shadow:0 0 0 0 rgba(169,123,255,0)}18%{box-shadow:0 0 0 7px rgba(169,123,255,.3)}}
+/* botón de video */
+.pvid{font:inherit;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;background:#fff;color:#000;border:0;border-radius:980px;padding:7px 17px 7px 14px;transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s ease}
+.pvid svg{width:11px;height:13px;flex:none}
+@media (hover:hover){.pvid:hover{transform:scale(1.06);box-shadow:0 6px 18px rgba(255,255,255,.18)}}
+.pvid:active{transform:scale(.96)}
+/* visor de video */
+.vsheet{border:0;padding:0;margin:auto;background:transparent;width:min(960px,calc(100% - 32px));max-width:100%;overflow:visible}
+.vsheet::backdrop{background:rgba(0,0,0,.72);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+.vsheet.vert{width:min(430px,calc(100% - 32px))}
+.vsheet video{display:block;width:100%;max-height:82vh;border-radius:22px;background:#000;box-shadow:0 30px 80px -20px rgba(0,0,0,.7)}
+.vsheet .x{position:absolute;top:-46px;right:0;width:34px;height:34px;display:grid;place-items:center;font-size:22px;line-height:1;color:#fff;background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:0;border-radius:50%;cursor:pointer;transition:background-color .2s ease,transform .25s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.vsheet .x:hover{background:rgba(255,255,255,.26);transform:scale(1.08)}}
+.vsheet .vin{position:relative}
+.vsheet[open]{animation:vpop .4s cubic-bezier(.2,.7,.2,1)}
+@keyframes vpop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+@media (max-width:600px){.vsheet .x{top:-42px}}
+/* píldora de novedad en la portada */
+.btn.newp{position:relative;display:inline-flex;align-items:center;gap:9px;font-weight:600;overflow:hidden;isolation:isolate;color:#fff;background:linear-gradient(100deg,#0066cc,#7b3fe4 28%,#d12f6a 50%,#7b3fe4 72%,#0066cc);background-size:260% 100%;animation:newpflow 9s linear infinite;box-shadow:0 6px 22px -6px rgba(123,63,228,.55)}
+.btn.newp:hover{background:linear-gradient(100deg,#0066cc,#7b3fe4 28%,#d12f6a 50%,#7b3fe4 72%,#0066cc);background-size:260% 100%}
+.btn.newp::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.55) 50%,transparent 62%);background-size:260% 100%;animation:newpshine 4.6s cubic-bezier(.5,0,.5,1) infinite}
+.btn.newp .spark{font-size:13px;color:#fff;opacity:.9}
+@keyframes newpflow{to{background-position:-260% 0}}
+@keyframes newpshine{0%{background-position:160% 0}60%,100%{background-position:-160% 0}}
+@media (prefers-reduced-motion:reduce){.btn.newp,.btn.newp::after{animation:none}.btn.newp::after{opacity:0}}
+@media (prefers-reduced-motion:reduce){.card.flash{animation:none}.vsheet[open]{animation:none}}
+/* '0 €' y su etiqueta al mismo tamaño; si no cabe, la etiqueta encoge sola (lo ajusta el JS de abajo) */
+.card .statw{font-size:1em;font-weight:600;letter-spacing:-.025em;white-space:nowrap}
+@media (max-width:620px){.card .statw{font-size:.6em}}
+/* pantallas muy estrechas: la etiqueta baja a su propia línea, como en las demás tarjetas */
+.card .stat.stack .statw{display:block;font-size:.34em;margin-top:4px;letter-spacing:0}
 </style>
 </head>
 <body>
@@ -369,7 +407,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <p class="role"><span data-l="en">I turn ideas into impact.</span><span data-l="es">Convierto ideas en impacto.</span></p>
     <p class="sub"><span data-l="en">Commercial Engineer · Master in Innovation &amp; Entrepreneurship · Master in CX Management</span><span data-l="es">Ingeniero Comercial · Máster en Innovación y Emprendimiento · Máster en Customer Experience</span></p>
     <div class="ctas">
-      <a class="btn" href="#projects"><span data-l="en">See my projects</span><span data-l="es">Ver mis proyectos</span></a>
+      <a class="btn newp" href="#pdbt"><span class="spark" aria-hidden="true">&#10022;</span><span data-l="en">New project</span><span data-l="es">Nuevo Proyecto</span></a>
     </div>
     <!-- FOTO: sube tu foto al repositorio como "foto.jpg" y se mostrará aquí -->
     <div class="portrait"><img src="foto.jpg" alt="José Castex" onerror="var u=this.src;if(u.slice(-4)==='.png'){this.src=u.slice(0,-4)+'.jpg'}else if(u.slice(-4)==='.jpg'){this.src=u.slice(0,-4)+'.jpeg'}else{this.remove()}">JC</div>
@@ -475,6 +513,29 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <p class="lede two"><span data-l="en"><span class="ln">Products I've built, grown or redefined,</span> <span class="ln">in companies, startups and university.</span></span><span data-l="es"><span class="ln">Productos que he creado, hecho crecer o redefinido,</span> <span class="ln">en empresas, startups y la universidad.</span></span></p>
 
     <div class="grid">
+      <article class="card wide feat" id="pdbt">
+        <span class="pnew"><span data-l="en">Latest project</span><span data-l="es">M&aacute;s reciente</span></span>
+        <span class="yr">DBT Santiago &middot; 2026</span>
+        <h3>Registro DBT Santiago</h3>
+        <span class="tag"><span data-l="en">Volunteer project &middot; In pilot</span><span data-l="es">Proyecto voluntario &middot; En piloto</span></span>
+        <p data-l="en">A web app that digitises and connects the records of patients and their therapists, a need the centre had postponed for years for lack of budget. Designed and built with AI-assisted development, now running as a pilot with real users.</p>
+        <p data-l="es">Aplicaci&oacute;n web que digitaliza y conecta los datos de los pacientes con sus psic&oacute;logos, una necesidad que el centro llevaba a&ntilde;os aplazando por presupuesto. Dise&ntilde;ada y desarrollada mediante desarrollo asistido por IA, hoy en piloto con usuarios reales.</p>
+        <div class="stat"><span data-l="en">&euro;0 <span class="statw">budget</span></span><span data-l="es">0&nbsp;&euro; <span class="statw">de presupuesto</span></span></div>
+        <div class="pmeta"><span data-l="en">3 days to build &middot; 3 access roles</span><span data-l="es">3 d&iacute;as de desarrollo &middot; 3 roles de acceso</span></div>
+        <div class="ptech">Claude Code &middot; Supabase &middot; Python &middot; PWA</div>
+        <div class="links"><button type="button" class="pmore"><span data-l="en">Read more</span><span data-l="es">Leer m&aacute;s</span></button><button type="button" class="pvid" id="pvid" hidden><svg viewBox="0 0 11 13" fill="currentColor" aria-hidden="true"><path d="M0 1.2v10.6a1 1 0 0 0 1.53.85l8.4-5.3a1 1 0 0 0 0-1.7l-8.4-5.3A1 1 0 0 0 0 1.2Z"/></svg><span data-l="en">Watch video</span><span data-l="es">Ver video</span></button><a href="https://registro.dbtsantiago.cl" target="_blank" rel="noopener">registro.dbtsantiago.cl &rsaquo;</a></div>
+        <template><div data-l="en"><div class="pfacts"><div><b>&euro;0</b><span>budget</span></div><div><b>3 days</b><span>to build</span></div><div><b>3 roles</b><span>patient, therapist, admin</span></div></div>
+<h4>The problem</h4><p>DBT Santiago kept patient information scattered across paper forms, spreadsheets and private messages. Therapists had no single place to look up a patient's history. And the crisis plan &mdash;which the therapist builds together with the patient and hands over on paper&mdash; was something the patient had to remember exactly when they were at their worst. Fixing this had been pending for years, but a custom system did not fit the centre's budget.</p>
+<h4>What I did</h4><p>I designed and built a working web app in three days, at no cost to the centre, using AI-assisted development with Claude Code. It digitises patient records, links each patient to their therapist and keeps everything in one place.</p>
+<h4>Access and security</h4><ol class="psteps"><li><b>Three roles</b>: a patient sees only their own information, a therapist only their own patients, and an administrator manages the centre.</li><li><b>Secure sign-in</b>: each person receives a one-time password and must change it on first access.</li><li><b>The crisis plan, always at hand</b>: each patient has their own inside the app, personalised by their therapist, with buttons to call Chile's suicide prevention line (*4141) and emergency medical services (SAMU, 131) directly. If their daily log records thoughts or behaviours of self-harm or suicide, the plan and those numbers appear on screen straight away.</li><li><b>Exportable history</b>: a therapist can download a patient's full record to Excel, to review it in session or share it with the team.</li></ol>
+<h4>Where it stands</h4><p>Running as a pilot with therapists and patients of the centre, gathering feedback to iterate on the product. The app is live at registro.dbtsantiago.cl, behind a login, so the link opens a sign-in screen rather than any patient data.</p>
+<h4>Stack</h4><p>Claude Code &middot; HTML &middot; SQL &middot; Python &middot; Supabase &middot; PWA &middot; Cloudflare &middot; GitHub &middot; BanaHosting / cPanel</p></div><div data-l="es"><div class="pfacts"><div><b>0 &euro;</b><span>de presupuesto</span></div><div><b>3 d&iacute;as</b><span>de desarrollo</span></div><div><b>3 roles</b><span>paciente, psic&oacute;logo, administrador</span></div></div>
+<h4>El problema</h4><p>DBT Santiago ten&iacute;a la informaci&oacute;n de sus pacientes repartida entre fichas de papel, hojas de c&aacute;lculo y mensajes privados. Los psic&oacute;logos no ten&iacute;an un sitio &uacute;nico donde consultar el historial de un paciente. Y el plan de crisis &mdash;que el psic&oacute;logo construye junto al paciente y le entrega en mano&mdash; quedaba en un papel que el paciente deb&iacute;a recordar justo cuando peor est&aacute;. Resolverlo llevaba a&ntilde;os pendiente, pero un sistema a medida no entraba en el presupuesto del centro.</p>
+<h4>Qu&eacute; hice</h4><p>Dise&ntilde;&eacute; y desarroll&eacute; una aplicaci&oacute;n web funcional en tres d&iacute;as y sin coste para el centro, mediante desarrollo asistido por IA con Claude Code. Digitaliza las fichas de los pacientes, conecta a cada paciente con su psic&oacute;logo y lo re&uacute;ne todo en un solo lugar.</p>
+<h4>Acceso y seguridad</h4><ol class="psteps"><li><b>Tres roles</b>: el paciente ve solo su informaci&oacute;n, el psic&oacute;logo solo la de sus pacientes y el administrador gestiona el centro.</li><li><b>Inicio de sesi&oacute;n seguro</b>: cada persona recibe una contrase&ntilde;a de un solo uso y debe cambiarla en el primer acceso.</li><li><b>El plan de crisis, siempre a mano</b>: cada paciente tiene el suyo dentro de la app, personalizado por su psic&oacute;logo, con botones para llamar directamente a la L&iacute;nea de Prevenci&oacute;n del Suicidio (*4141) y al SAMU (131). Si en su registro diario marca pensamientos o conductas de autolesi&oacute;n o suicidio, el plan y esos n&uacute;meros aparecen de inmediato en pantalla.</li><li><b>Historial exportable</b>: el psic&oacute;logo puede descargar el registro completo de un paciente en Excel, para revisarlo en sesi&oacute;n o compartirlo con el equipo.</li></ol>
+<h4>En qu&eacute; punto est&aacute;</h4><p>Funcionando en modo piloto con psic&oacute;logos y pacientes del centro, recogiendo feedback para iterar el producto. La app est&aacute; en registro.dbtsantiago.cl, detr&aacute;s de un inicio de sesi&oacute;n, as&iacute; que el enlace abre una pantalla de acceso y no datos de ning&uacute;n paciente.</p>
+<h4>Tecnolog&iacute;as</h4><p>Claude Code &middot; HTML &middot; SQL &middot; Python &middot; Supabase &middot; PWA &middot; Cloudflare &middot; GitHub &middot; BanaHosting / cPanel</p></div></template>
+      </article>
       <article class="card wide">
         <span class="yr">Izo · 2026</span>
         <h3>Mercamadrid</h3>
@@ -662,6 +723,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   </div>
 </section>
 
+<dialog class="vsheet" id="vsheet" aria-label="Video">
+  <div class="vin"><button type="button" class="x" aria-label="Close">&times;</button>
+  <video id="vplayer" controls playsinline preload="metadata"></video></div>
+</dialog>
 <dialog class="sheet psheet" id="psheet" aria-labelledby="psheet-title">
   <button type="button" class="x" aria-label="Close">×</button>
   <div class="sheet-in">
@@ -849,6 +914,80 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   ps.querySelector('.x').addEventListener('click',closeP);
   ps.addEventListener('click',function(e){if(e.target===ps)closeP()});
   document.querySelectorAll('.card .pmore').forEach(function(b){b.addEventListener('click',function(){openP(b.closest('.card'))})});
+
+  // la etiqueta del 0 € va al mismo tamaño que la cifra y solo encoge si no cabe
+  (function(){
+    var st=document.querySelector('#pdbt .stat'); if(!st)return;
+    var m=document.createElement('span'), t;
+    m.style.cssText='position:absolute;visibility:hidden;white-space:nowrap;left:-9999px;top:0;pointer-events:none';
+    function fit(){
+      var sp=null, ch=st.children;
+      for(var i=0;i<ch.length;i++){if(getComputedStyle(ch[i]).display!=='none'){sp=ch[i];break}}
+      if(!sp)return;
+      var w=sp.querySelector('.statw'), avail=st.clientWidth;
+      if(!w||!avail)return;
+      st.classList.remove('stack');
+      m.style.font=getComputedStyle(st).font;
+      document.body.appendChild(m);
+      var ok=false;
+      for(var r=1;r>=0.55;r-=0.04){
+        w.style.fontSize=r.toFixed(2)+'em';
+        m.innerHTML=sp.innerHTML;
+        if(m.getBoundingClientRect().width<=avail){ok=true;break}
+      }
+      m.remove();
+      if(!ok){w.style.fontSize='';st.classList.add('stack')}
+    }
+    fit();
+    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+    addEventListener('resize',function(){clearTimeout(t);t=setTimeout(fit,120)});
+    new MutationObserver(fit).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  })();
+
+  // video del proyecto: el botón aparece solo cuando el archivo existe en video/registro-dbt.mp4
+  (function(){
+    var vb=document.getElementById('pvid'), vs=document.getElementById('vsheet'), vp=document.getElementById('vplayer');
+    if(!vb||!vs||!vp)return;
+    // elige el vídeo según el idioma de la página y el tamaño de pantalla
+    function pick(){
+      var lang=document.documentElement.lang==='es'?'es':'en';
+      var m=matchMedia('(max-width:720px)').matches?'-movil':'';
+      return {v:'video/registro-'+lang+m+'.mp4', p:'video/portada-'+lang+m+'.jpg'};
+    }
+    var probed={};
+    function probe(){
+      var u=pick().v;
+      if(probed[u]!==undefined){vb.hidden=!probed[u];return}
+      fetch(u,{method:'HEAD'}).then(function(r){probed[u]=r.ok;vb.hidden=!r.ok})
+        .catch(function(){probed[u]=false;vb.hidden=true});
+    }
+    probe();
+    addEventListener('resize',function(){clearTimeout(vb._t);vb._t=setTimeout(probe,200)});
+    new MutationObserver(probe).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+    vp.addEventListener('loadedmetadata',function(){
+      vs.classList.toggle('vert',vp.videoHeight>vp.videoWidth);
+    });
+    function closeV(){if(!vs.open)return;vp.pause();vs.close()}
+    vb.addEventListener('click',function(){
+      var c=pick();
+      if(vp.getAttribute('src')!==c.v){vp.setAttribute('poster',c.p);vp.setAttribute('src',c.v);vp.load()}
+      vs.showModal();document.body.style.overflow='hidden';vp.play().catch(function(){});
+    });
+    vs.addEventListener('close',function(){document.body.style.overflow='';vp.pause();vp.currentTime=0;vb.focus()});
+    vs.addEventListener('cancel',function(e){e.preventDefault();closeV()});
+    vs.querySelector('.x').addEventListener('click',closeV);
+    vs.addEventListener('click',function(e){if(e.target===vs)closeV()});
+  })();
+
+  // la píldora de la portada baja hasta el proyecto nuevo y lo resalta un instante
+  (function(){
+    var p=document.querySelector('.btn.newp'), c=document.getElementById('pdbt');
+    if(!p||!c)return;
+    p.addEventListener('click',function(){
+      setTimeout(function(){c.classList.remove('flash');void c.offsetWidth;c.classList.add('flash')},520);
+    });
+    c.addEventListener('animationend',function(){c.classList.remove('flash')});
+  })();
 
   // más proyectos
   var btn=document.getElementById('morebtn'), ex=document.getElementById('pextra'), busy=false;
