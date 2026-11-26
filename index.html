@@ -951,8 +951,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     // elige el vídeo según el idioma de la página y el tamaño de pantalla
     function pick(){
       var lang=document.documentElement.lang==='es'?'es':'en';
-      var m=matchMedia('(max-width:720px)').matches?'-movil':'';
-      return {v:'video/registro-'+lang+m+'.mp4', p:'video/portada-'+lang+m+'.jpg'};
+      var o=matchMedia('(max-width:720px)').matches?'vertical':'horizontal';
+      return {v:'video/'+o+'_'+lang+'.mp4', p:'video/portada_'+o+'_'+lang+'.jpg'};
     }
     var probed={};
     function probe(){
